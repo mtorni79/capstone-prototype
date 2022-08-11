@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="apple-touch-icon" sizes="120x120" href="./images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="./site.webmanifest">
+    <link rel="mask-icon" href="./images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <!-- reset -->
+    <link rel="stylesheet" href="./assets/styles/reset.css">
+    <link rel="stylesheet" href="./assets/styles/normalize.css">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fox Creek Admin</title>
+    <style>
+        /* TODO: find a reason for session storage */
+        /* TODO: find a reason for using fixed */
+        /* TODO: use camelcase for ids and classes */
+        /* TODO: use active hover on links */
+        /* TODO: use animations, css images, transforms etc */
+        :root {
+            font-family: "Arial", sans-serif;
+            /* TODO: maybe put in global css */
+        }
+
+        body {
+            background-color: #3B590C;
+        }
+
+        p {
+            font-size: 14px;
+            line-height: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        figure {
+            float: left;
+        }
+
+        figcaption {
+            font-size: 8px;
+        }
+
+        #container {
+            margin: 10px auto;
+            width: 95%;
+            background-color: #F2F2F2;
+            border: 3px groove #CDD971;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            background-color: #78A614;
+            min-height: 80px;
+        }
+
+        #headerFlex1 {
+            flex: 1;
+            /* TODO: consider using .class */
+        }
+
+        #headerFlex2 {
+            flex: 2;
+            /* TODO: consider using two .class */
+            text-align: center;
+        }
+
+        #headerFlex3 {
+            flex: 1;
+            text-align: right;
+        }
+
+        #mainContainer {
+            display: flex;
+        }
+
+        .mainNav {
+            padding-top: 0.75em;
+            display: flex;
+            flex-direction: column;
+            flex: 1 .5 100px;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            height: 25px;
+        }
+
+        .mainNav>* {
+            flex: 1;
+            border-radius: 0;
+            color: #fff;
+            margin: 10px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 14px;
+            margin-bottom: 0;
+            font-size: 16px;
+            line-height: 1.42em;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            cursor: pointer;
+            border: 1px solid transparent;
+            border-radius: 0;
+            background-color: #506266;
+        }
+
+        .btn:hover {
+            background-color: #B3D929;
+        }
+
+        main {
+            flex: 10;
+            /* TODO: make better flex */
+            align-items: stretch
+        }
+
+        #eventsSection {
+            clear: both;
+        }
+
+        footer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* justify-content: space-between; */
+            background-color: #78A614;
+            min-height: 80px;
+        }
+
+        small {
+            font-size: 10px;
+            text-align: center;
+        }
+
+        #footerNav {
+            height: 50px;
+            width: 100%;
+            text-align: center;
+        }
+
+        #footerNav ul li {
+            font-family: Verdana, Geneva, sans-serif;
+            font-size: .85em;
+            color: #fff;
+            display: inline;
+            padding-right: 6px;
+            border-right: 1px solid #fff;
+        }
+
+        #footerNav ul li:last-child {
+            border-right: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <header>
+            <img id="headerFlex1" width="50px" height="50px" alt="Golf Image">
+            <h4 id="headerFlex2">Welcom to Fox Creek Golf Course Admin</h4>
+            <img id="headerFlex3" width="50px" height="50px" alt="Member Icon">
+        </header>
+        <div id="mainContainer">
+            <!-- be consistant use mainContainer -->
+
+            <nav class="mainNav">
+                <button type="button" class="btn" onclick="window.location.href='https://www.w3docs.com';">Home</button>
+                <button type="button" class="btn" onclick="window.location.href='https://www.w3docs.com';">Home</button>
+                <button type="button" class="btn" onclick="window.location.href='https://www.w3docs.com';">Home</button>
+            </nav>
+
+            <main>
+                
+                    <section id="homepageTop">
+                        <figure>
+                            <!-- TODO: media query remove img on smaller views -->
+                            <img src="./images/homepage-image.jpg" width="200px" height="200px">
+                            <figcaption>Fox Creek Member of PGA &copy</figcaption>
+                        </figure>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+                            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                            aliquip ex ea commodo consequat.
+                        </p>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+                            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                            aliquip ex ea commodo consequat.
+                        </p>
+                    </section>
+                    <section id="eventsSection">
+                        <h1>Events</h1>
+                        <ul>
+                            <li>
+                                <h2>
+                                    Event Title
+                                </h2>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+                                </p>
+                                <div>
+                                    <button>Groups</button>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                
+            </main>
+        </div>
+        <footer>
+
+            <small>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                et
+                dolore
+                magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+                ea
+                commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
+            </small>
+
+
+            <nav id="footerNav">
+                <ul>
+                    <li>Home</li>
+                    <li>Home</li>
+                    <li>Home</li>
+                </ul>
+            </nav>
+        </footer>
+    </div>
+    </div>
+</body>
+
+</html>

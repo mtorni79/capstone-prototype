@@ -1,0 +1,18 @@
+{
+  "name": "capstone-prototype",
+  "version": "1.0.0",
+  "description": "Capstone Prototype",
+  "main": "index.html",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mtorni79"
+  },
+  "keywords": [
+    "\"Capstone\""
+  ],
+  "author": "Michael Torni",
+  "license": "ISC"
+}
