@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <link rel="apple-touch-icon" sizes="120x120" href="./images/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon/favicon-32x32.png">
@@ -16,17 +17,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fox Creek Admin</title>
     <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            padding: 0;
+            margin: 0;
+        }
+
         #wrapper {
-            margin: 0px;
+            margin: 0;
+            padding: 0;
             display: flex;
             flex-direction: column;
             height: 100%;
             width: 100%;
         }
-   
+
         main {
             padding: 70px 10px;
             height: 100%;
+        }
+
+        #description {
+            display: flex;
+            flex-direction: row;
+            padding-top: 10px;
+        }
+
+        #description p {
+            padding: 25px 0px;
+        }
+
+        figcaption {
+            font-size: 8px;
+            text-align: center;
         }
 
         header {
@@ -74,126 +97,68 @@
             border-right: none;
         }
 
-        #eventContainer {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        #eventSection {
+            margin: auto;
+            width: 60%;
         }
 
-        h1{
+        #eventDetails {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        h1 {
             font-size: 20px;
         }
-        
     </style>
 </head>
+
 <body>
     <div id="wrapper">
         <header class="header-footer">
-                <nav>
-                    <button type="button" class="btn" onclick="window.location.href='https://www.w3docs.com';">Home</button>
-                    <button type="button" class="btn" onclick="window.location.href='https://www.w3docs.com';">Home</button>
-                    <button type="button" class="btn" onclick="window.location.href='https://www.w3docs.com';">Home</button>
-                </nav>
-                <h4 id="headerFlex2">Welcom to Fox Creek Golf Course Admin</h4>
-                <img id="headerFlex3" width="50px" height="50px" alt="Member Icon">            
+            <nav>
+                <button type="button" class="btn" onclick="window.location.href='https://www.w3docs.com';">Home</button>
+                <button type="button" class="btn" onclick="window.location.href='https://www.w3docs.com';">Home</button>
+                <button type="button" class="btn" onclick="window.location.href='https://www.w3docs.com';">Home</button>
+            </nav>
+            <h4 id="headerFlex2">Welcom to Fox Creek Golf Course Admin</h4>
+            <img id="headerFlex3" width="50px" height="50px" alt="Member Icon">
         </header>
         <main>
-        
-            <section>
-                <h1>Description</h1>
-                <p>
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni maiores eos impedit adipisci totam rem vel necessitatibus ipsa architecto corporis recusandae inventore eligendi consequatur aliquid labore, a dolores! Blanditiis, nesciunt.
-                </p>
-            </section>            
-            <section id="eventContainer">
-               <h1>Events</h1>
-               <!-- start events -->
-               <div>
-                 <h2>sdafasdfdsfasfdadfasdf</h2>
-                 <div>fdf sdf  adf a dfdf</div>
-                 <div>fdf sdf  adf a dfdf</div>
-                 <div>fdf sdf  adf a dfdf</div>
-               </div>
-               <div>
-                <h2>sdafasdfdsfasfdadfasdf</h2>
-                <div>fdf sdf  adf a dfdf</div>
-                <div>fdf sdf  adf a dfdf</div>
-                <div>fdf sdf  adf a dfdf</div>
-              </div>
-              <div>
-                <h2>sdafasdfdsfasfdadfasdf</h2>
-                <div>fdf sdf  adf a dfdf</div>
-                <div>fdf sdf  adf a dfdf</div>
-                <div>fdf sdf  adf a dfdf</div>
-              </div>
-              <div>
-                <h2>sdafasdfdsfasfdadfasdf</h2>
-                <div>fdf sdf  adf a dfdf</div>
-                <div>fdf sdf  adf a dfdf</div>
-                <div>fdf sdf  adf a dfdf</div>
-              </div>
-              <div>
-                <h2>sdafasdfdsfasfdadfasdf</h2>
-                <div>fdf sdf  adf a dfdf</div>
-                <div>fdf sdf  adf a dfdf</div>
-                <div>fdf sdf  adf a dfdf</div>
-              </div>
-              <div>
-                <h2>sdafasdfdsfasfdadfasdf</h2>
-                <div>fdf sdf  adf a dfdf</div>
-                <div>fdf sdf  adf a dfdf</div>
-                <div>fdf sdf  adf a dfdf</div>
-              </div>
-              <div>
-                <h2>sdafasdfdsfasfdadfasdf</h2>
-                <div>fdf sdf  adf a dfdf</div>
-                <div>fdf sdf  adf a dfdf</div>
-                <div>fdf sdf  adf a dfdf</div>
-              </div>
-              <div>
-                <h2>sdafasdfdsfasfdadfasdf</h2>
-                <div>fdf sdf  adf a dfdf</div>
-                <div>fdf sdf  adf a dfdf</div>
-                <div>fdf sdf  adf a dfdf</div>
-              </div>
-              <div>
-                <h2>sdafasdfdsfasfdadfasdf</h2>
-                <div>fdf sdf  adf a dfdf</div>
-                <div>fdf sdf  adf a dfdf</div>
-                <div>fdf sdf  adf a dfdf</div>
-              </div>
-              <div>
-                <h2>sdafasdfdsfasfdadfasdf</h2>
-                <div>fdf sdf  adf a dfdf</div>
-                <div>fdf sdf  adf a dfdf</div>
-                <div>fdf sdf  adf a dfdf</div>
-              </div>
-              <div>
-                <h2>sdafasdfdsfasfdadfasdf</h2>
-                <div>fdf sdf  adf a dfdf</div>
-                <div>fdf sdf  adf a dfdf</div>
-                <div>fdf sdf  adf a dfdf</div>
-              </div>
-              <div>
-                <h2>sdafasdfdsfasfdadfasdf</h2>
-                <div>fdf sdf  adf a dfdf</div>
-                <div>fdf sdf  adf a dfdf</div>
-                <div>fdf sdf  adf a dfdf</div>
-              </div>
-              <div>
-                <h2>sdafasdfdsfasfdadfasdf</h2>
-                <div>fdf sdf  adf a dfdf</div>
-                <div>fdf sdf  adf a dfdf</div>
-                <div>fdf sdf  adf a dfdf</div>
-              </div>
-              <div>
-                <h2>sdafasdfdsfasfdadfasdf</h2>
-                <div>fdf sdf  adf a dfdf</div>
-                <div>fdf sdf  adf a dfdf</div>
-                <div>fdf sdf  adf a dfdf</div>
-              </div>
 
-               <!-- end events -->
+            <section id="description">
+                <figure>
+                    <!-- TODO: media query remove img on smaller views -->
+                    <img src="./images/main-logo.jpg" width="125px" height="125px">
+                    <figcaption>Fox Creek Member of PGA &copy</figcaption>
+                </figure>
+                <p>
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni maiores eos impedit adipisci totam
+                    rem vel necessitatibus ipsa architecto corporis recusandae inventore eligendi consequatur aliquid
+                    labore, a dolores! Blanditiis, nesciunt.
+                </p>
+            </section>
+
+
+            <section id="eventSection">
+                <!-- start events -->
+               
+                    <h1 class="text-align-left">Events</h1>
+                    <div id="eventDetails">
+                        <div>
+                            <h2>sdafasdfdsfasfdadfasdf</h2>
+                            <div>fdf sdf adf a dfdf</div>
+                            <div>fdf sdf adf a dfdf</div>
+                            <div>fdf sdf adf a dfdf</div>
+                        </div>
+                        <button>sdfasd</button>
+                    </div>
+               
+
+
+                <!-- end events -->
             </section>
 
         </main>
@@ -205,7 +170,7 @@
                 magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
                 ea
                 commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.                
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
             </small>
 
 
@@ -219,4 +184,5 @@
         </footer>
     </div>
 </body>
+
 </html>
