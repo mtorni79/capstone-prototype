@@ -1,0 +1,17 @@
+#footerNav {
+  width: 100%;
+  text-align: center;
+}
+
+#footerNav ul li {
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: .85em;
+  color: #fff;
+  display: inline;
+  padding-right: 6px;
+  border-right: 1px solid #fff;
+}
+
+#footerNav ul li:last-child {
+  border-right: none;
+}

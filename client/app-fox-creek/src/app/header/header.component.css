@@ -1,0 +1,7 @@
+header {
+  display: flex;
+  justify-content: space-evenly;
+  border-bottom: 2px solid #000;
+  position: fixed;
+  width: 100%;
+}
