@@ -1,0 +1,42 @@
+<section id="description">
+  <figure>
+    <!-- TODO: media query remove img on smaller views -->
+    <img src="./images/logo-2.jpg" width="125px" height="125px">
+    <figcaption>Fox Creek Member of PGA &copy</figcaption>
+  </figure>
+  <div>
+    <p>
+      Welcome to Fox Creek Golf course website. This site as of now is mostly for create events,
+      adding groups, and setting up golfer's.
+      This site was designed to help our Administration have a consistant way of doing what we have
+      been doing for years on paper.
+    </p>
+    <p>
+      We have big plans for this site in the near future. For example letting sponsors and golfer's a
+      like be more involed in our site. We would like to
+      be able to allow no admins to sign up for event as well as see how they did compared to other's
+      in past events.
+    </p>
+    <p>The possiblites are truely endless.
+      Maybe this could one day be the go to software system of all aspects golf for all golf courses.
+      Too ambishish maybe, but so was that shoot you took the other day
+      thinking you could make it over the water hazard.
+    </p>
+  </div>
+</section>
+
+
+<section>
+  <h1>Events</h1>
+  <ul>
+    <li *ngFor="let event of events">
+      <div>
+        <div>
+          <h2>{{event.eventName}}</h2>
+          <div>{{event.eventDescription}}</div>
+        </div>
+        <button>sdfasd</button>
+      </div>
+    </li>
+  </ul>
+</section>

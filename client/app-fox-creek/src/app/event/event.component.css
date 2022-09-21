@@ -1,0 +1,14 @@
+#description {
+  display: flex;
+  flex-direction: row;
+}
+
+
+li {
+  list-style-type: none;
+  text-align: left;
+}
+
+ul {
+  /*margin-bottom: 2em;*/
+}

@@ -1,19 +1,9 @@
 main {
   padding: 70px 10px;
-  /*height: 100%;*/
+  min-height: 80%;
   /*
   background-image: url(images/main-bg.png);
   background-position: center bottom;
   background-repeat: no-repeat;
   */
 }
-
-li {
-  list-style-type: none;
-  text-align: left;
-}
-
-ul {
-  /*margin-bottom: 2em;*/
-}
-

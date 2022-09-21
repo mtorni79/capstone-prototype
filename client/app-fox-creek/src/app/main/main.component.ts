@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { EventService } from '../services/event.service';
 
 @Component({
@@ -7,24 +8,12 @@ import { EventService } from '../services/event.service';
   styleUrls: ['./main.component.css'],
 })
 export class MainComponent implements OnInit {
-  events!: any;
-  errorMessage!: string;
+  routerLink!: string;
+  router;
 
-  constructor(private eventService: EventService) {}
-
-  ngOnInit(): void {
-    this.eventService.getEvents().subscribe({
-      next: (res: any) => {
-        this.events = res;
-        console.log(this.events);
-      },
-      error: (err) => {
-        this.errorMessage = err;
-        console.log((this.errorMessage = err.message));
-      },
-      complete: () => {
-        console.log(`called getEvents()`);
-      },
-    });
+  constructor(private _router: Router) {
+    this.router = _router;
   }
+
+  ngOnInit(): void {}
 }
