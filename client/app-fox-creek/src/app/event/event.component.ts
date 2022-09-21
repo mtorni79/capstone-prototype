@@ -7,6 +7,9 @@ import { EventService } from '../services/event.service';
   styleUrls: ['./event.component.css']
 })
 export class EventComponent implements OnInit {
+  logo: string = './assets/images/logo.jpg';
+  logoAlt: string = 'FoodPlate logo';
+
   events!: any;
   errorMessage!: string;
 

@@ -1,7 +1,6 @@
 <section id="description">
   <figure>
-    <!-- TODO: media query remove img on smaller views -->
-    <img src="./images/logo-2.jpg" width="125px" height="125px">
+    <img [src]="logo" [alt]="logoAlt" width="200px" height="200px"/>
     <figcaption>Fox Creek Member of PGA &copy</figcaption>
   </figure>
   <div>
@@ -35,7 +34,7 @@
           <h2>{{event.eventName}}</h2>
           <div>{{event.eventDescription}}</div>
         </div>
-        <button>sdfasd</button>
+        <a routerLink="groups" routerLinkActive="active"><button>sdfasd</button></a>
       </div>
     </li>
   </ul>

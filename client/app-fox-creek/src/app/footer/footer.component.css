@@ -2,14 +2,12 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-top: 2px solid #000;
+  border-top: 2px solid green;
   padding-top: 10px;
-  padding-left: 40px;
-  padding-right: 40px;
 }
 
 small {
-  font-size: 12px;
+  font-size: 10px;
   text-align: center;
 }
 
@@ -25,7 +23,7 @@ small {
   display: inline;
   padding-right: 5px;
   padding-left: 5px;
-  border-right: 1px solid #fff;
+  border-right: 1px solid green;
 }
 
 #footerNav ul li:last-child {
