@@ -8,8 +8,12 @@ main {
   */
 }
 
-#description {
-  display: flex;
-  flex-direction: row;
-  padding-top: 10px;
+li {
+  list-style-type: none;
+  text-align: left;
 }
+
+ul {
+  /*margin-bottom: 2em;*/
+}
+
