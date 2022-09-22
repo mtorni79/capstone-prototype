@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EventService } from '../services/event.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'fc-event',
@@ -11,16 +12,18 @@ export class EventComponent implements OnInit {
   logo: string = './assets/images/logo.jpg';
   logoAlt: string = 'Fox Creek Logo';
 
+  eventSubscription!: Subscription;
   events!: any;
   errorMessage!: string;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private eventService: EventService) {}
+    private eventService: EventService
+  ) {}
 
   ngOnInit(): void {
-    this.eventService.getEvents().subscribe({
+    this.eventSubscription = this.eventService.getEvents().subscribe({
       next: (res: any) => {
         this.events = res;
         console.log(this.events);
@@ -35,10 +38,14 @@ export class EventComponent implements OnInit {
     });
   }
 
-  goToGroups(eventId: string): void{
-      this.router.navigate(["groups"], {
-        relativeTo: this.route,
-        queryParams: { event: `${eventId}` },
-      });
+  goToGroups(eventId: string): void {
+    this.router.navigate(['groups'], {
+      relativeTo: this.route,
+      queryParams: { eventId: `${eventId}` },
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.eventSubscription.unsubscribe();
   }
 }

@@ -15,6 +15,7 @@ import { FooterComponent } from './footer/footer.component';
 import { EventService } from './services/event.service';
 import { GroupComponent } from './group/group.component';
 import { EventComponent } from './event/event.component';
+import { GroupService } from './services/group.service';
 
 
 @NgModule({
@@ -34,7 +35,7 @@ import { EventComponent } from './event/event.component';
     TableModule,
     ButtonModule,
   ],
-  providers: [EventService],
+  providers: [EventService, GroupService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

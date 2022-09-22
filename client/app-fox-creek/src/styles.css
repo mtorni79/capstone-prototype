@@ -21,3 +21,14 @@ body {
 h1 {
   font-size: 20px;
 }
+
+.error-message {
+  background-color: #fff;
+  font-size: 1em;
+  font-weight: 700;
+  margin: 1em auto;
+  padding: 1em;
+  border: 1px solid #ccc;
+  border-radius: .35em;
+  text-align: center;
+}

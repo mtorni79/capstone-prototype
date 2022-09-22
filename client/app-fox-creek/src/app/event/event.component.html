@@ -24,13 +24,16 @@
   </div>
 </section>
 
+<section class="error-message" *ngIf="errorMessage">
+  {{ errorMessage | json }}
+</section>
 
-<p-table [value]="events" styleClass="p-datatable-striped" responsiveLayout="scroll">
+<p-table [value]="events" styleClass="p-datatable-striped" responsiveLayout="scroll" *ngIf="!errorMessage">
   <ng-template pTemplate="header">
     <tr>
       <th>Name</th>
       <th>Description</th>
-      <th></th>
+      <th>Action</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-event>
