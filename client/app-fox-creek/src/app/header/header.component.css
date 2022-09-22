@@ -1,7 +1,12 @@
 header {
   display: flex;
   justify-content: space-evenly;
-  border-bottom: 2px solid green;
+  border-bottom: 2px solid var(--main-green-color);
   position: fixed;
+  z-index: 10;
   width: 100%;
+}
+
+header > h1 {
+  color: whitesmoke;
 }

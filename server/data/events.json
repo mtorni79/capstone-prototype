@@ -1,22 +1,22 @@
 [
 	{
-		"eventName": "event One",
 		"eventId": "event1",
-		"description": "This is event 1"
+		"eventName": "Rolex Classic",
+		"description": "Classic round of golf each person start at tee 1 and lowest score wins"
 	},
 	{
-		"eventName": "event Two",
 		"eventId": "event2",
-		"description": "This is event 2"
+		"eventName": "End of Summer Scamble",		
+		"description": "Each team will start at a diffent hole best ball will be played"
     },
     {
-		"eventName": "event Three",
 		"eventId": "event3",
-		"description": "This is event 3" 
+		"eventName": "Fall Event",		
+		"description": "Team based have fun no score will be counted closet to the pin hole 8 wins a prize" 
 	},
 	{
-		"eventName": "event Four",
 		"eventId": "event4",
-		"description": "This is event 4"
+		"eventName": "Local Corporate Outing",		
+		"description": "Bring your a game free advertizement for local compaines, familes are welcome to join for dinner after the round" 
 	}
 ]
