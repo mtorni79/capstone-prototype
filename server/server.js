@@ -76,8 +76,8 @@ function getNextId(counterType) {
 function isValidGroup(group) {
   if (group.GroupName == undefined || group.GroupName.trim() == "") return 1;
   if (
-    group.eventName == undefined ||
-    group.eventName.trim() == ""
+    group.OrganizationName == undefined ||
+    group.OrganizationName.trim() == ""
   )
     return 2;
   if (group.SponsorName == undefined || group.SponsorName.trim() == "")
@@ -121,11 +121,11 @@ app.get("/index.html", function (req, res) {
 //        parsing and stringifying.  But it is worth it as you debug your code.
 /* ************************************************************************* */
 
-// GET EVENTS
-app.get("/api/events", function (req, res) {
-  console.log("Received a GET request for all events");
+// GET ORGANIZATION
+app.get("/api/organizations", function (req, res) {
+  console.log("Received a GET request for all organizations");
 
-  let data = fs.readFileSync(__dirname + "/data/events.json", "utf8");
+  let data = fs.readFileSync(__dirname + "/data/organizations.json", "utf8");
   data = JSON.parse(data);
 
   console.log("Returned data is: ");
@@ -166,29 +166,29 @@ app.get("/api/groups/:id", function (req, res) {
   res.end(JSON.stringify(match));
 });
 
-// GET MANY GROUPS BY event
-app.get("/api/groups/byevent/:id", function (req, res) {
+// GET MANY GROUPS BY ORGANIZATION
+app.get("/api/groups/byorganization/:id", function (req, res) {
   let id = req.params.id;
-  console.log("Received a GET request for groups in event " + id);
+  console.log("Received a GET request for groups in organization " + id);
 
-  let orgData = fs.readFileSync(__dirname + "/data/events.json", "utf8");
+  let orgData = fs.readFileSync(__dirname + "/data/organizations.json", "utf8");
   orgData = JSON.parse(orgData);
 
-  let event = orgData.find(
-    (element) => element.eventId.toLowerCase() == id.toLowerCase()
+  let organization = orgData.find(
+    (element) => element.OrganizationId.toLowerCase() == id.toLowerCase()
   );
-  if (event == null) {
-    res.status(404).send("event Not Found");
-    console.log("event not found");
+  if (organization == null) {
+    res.status(404).send("Organization Not Found");
+    console.log("Organization not found");
     return;
   }
 
   let data = fs.readFileSync(__dirname + "/data/groups.json", "utf8");
   data = JSON.parse(data);
 
-  // find the matching groups for a specific event
+  // find the matching groups for a specific organization
   let matches = data.filter(
-    (element) => element.eventName == event.eventName
+    (element) => element.OrganizationName == organization.OrganizationName
   );
 
   console.log("Returned data is: ");
@@ -237,7 +237,7 @@ app.post("/api/groups", urlencodedParser, function (req, res) {
   let group = {
     GroupId: getNextId("group"), // assign id to group
     GroupName: req.body.GroupName,
-    eventName: req.body.eventName,
+    OrganizationName: req.body.OrganizationName,
     SponsorName: req.body.SponsorName,
     SponsorPhone: req.body.SponsorPhone,
     SponsorEmail: req.body.SponsorEmail,
@@ -277,7 +277,7 @@ app.put("/api/groups", urlencodedParser, function (req, res) {
   let group = {
     GroupId: req.body.GroupId, //req.params.id if you use id in URL instead of req.body.GroupId
     GroupName: req.body.GroupName,
-    eventName: req.body.eventName,
+    OrganizationName: req.body.OrganizationName,
     SponsorName: req.body.SponsorName,
     SponsorPhone: req.body.SponsorPhone,
     SponsorEmail: req.body.SponsorEmail,
@@ -305,7 +305,7 @@ app.put("/api/groups", urlencodedParser, function (req, res) {
 
   // update the group
   match.GroupName = group.GroupName;
-  match.eventName = group.eventName;
+  match.OrganizationName = group.OrganizationName;
   match.SponsorName = group.SponsorName;
   match.SponsorPhone = group.SponsorPhone;
   match.SponsorEmail = group.SponsorEmail;

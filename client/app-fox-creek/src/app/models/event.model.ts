@@ -1,5 +1,5 @@
 export class Event {
-  eventId!: string;
-  eventName!: string;
-  description!: string;
+  OrganizationId!: string;
+  OrganizationName!: string;
+  Description!: string;
 }

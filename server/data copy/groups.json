@@ -2,7 +2,7 @@
   {
     "GroupId": 1,
     "GroupName": "United Front",
-    "OrganizationName": "Organization One",
+    "OrganizationName": "Rolex Classic",
     "SponsorName": "Natalie Rachelle",
     "SponsorPhone": "555-000-0000",
     "SponsorEmail": "nat214@gmail.com",
@@ -31,7 +31,7 @@
   {
     "GroupId": 2,
     "GroupName": "Warriors",
-    "OrganizationName": "Organization Two",
+    "OrganizationName": "Team Scamble",
     "SponsorName": "Brittany Ray",
     "SponsorPhone": "555-000-0004",
     "SponsorEmail": "brit805@aol.com",
@@ -54,7 +54,7 @@
   {
     "GroupId": 3,
     "GroupName": "Strategy One",
-    "OrganizationName": "Organization Three",
+    "OrganizationName": "Fall Event",
     "SponsorName": "Zachary Westly",
     "SponsorPhone": "555-000-0012",
     "SponsorEmail": "zwest90@gmail.com",

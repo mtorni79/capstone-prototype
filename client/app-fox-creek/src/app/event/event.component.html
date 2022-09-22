@@ -35,28 +35,12 @@
   </ng-template>
   <ng-template pTemplate="body" let-event>
     <tr>
-      <td>{{event.eventName}}</td>
-      <td>{{event.description}}</td>
+      <td>{{event.OrganizationName}}</td>
+      <td>{{event.Description}}</td>
       <td style="text-align: center">
-        <button pButton type="button" label="Groups" (click)="goToGroups(event.eventId)"></button>
+        <button pButton type="button" label="Groups" (click)="goToGroups(event.OrganizationId)"></button>
       </td>
     </tr>
   </ng-template>
 </p-table>
 
-<!--
-<section>
-  <h1>Events</h1>
-  <ul>
-    <li *ngFor="let event of events">
-      <div>
-        <div>
-          <h2>{{event.eventName}}</h2>
-          <div>{{event.eventDescription}}</div>
-        </div>
-        <a routerLink="groups" routerLinkActive="active"><button>sdfasd</button></a>
-      </div>
-    </li>
-  </ul>
-</section>
--->

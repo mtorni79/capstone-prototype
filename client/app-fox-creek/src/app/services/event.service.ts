@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class EventService {
-  url = 'http://localhost:8082/api/events';
+  url = 'http://localhost:8082/api/organizations';
   errorMessage!: string;
   jsonContentTypeHeaders = {
     headers: new HttpHeaders().set('Content-Type', 'application/json'),

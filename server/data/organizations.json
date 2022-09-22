@@ -1,0 +1,22 @@
+[
+	{
+		"OrganizationId": "event1",
+		"OrganizationName": "Rolex Classic",		
+		"Description": "Classic round of golf each person start at tee 1 and lowest score wins"
+	},
+	{
+		"OrganizationId": "event4",
+		"OrganizationName": "Team Scamble",		
+		"Description": "Each team will start at a diffent hole best ball will be played"
+    },
+    {
+		"OrganizationId": "event3",
+		"OrganizationName": "Fall Event",		
+		"Description": "Team based have fun no score will be counted closet to the pin hole 8 wins a prize" 
+	},
+	{
+		"OrganizationId": "event4",
+		"OrganizationName": "Local Corporate Outing",		
+		"Description": "Bring your a game free advertizement for local compaines, familes are welcome to join for dinner after the round"
+	}
+]
