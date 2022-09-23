@@ -1,7 +1,6 @@
 <div class="flex">
   <div class="flex-1 flex align-items-center justify-content-center">
     <img [src]="logo" [alt]="logoAlt" width="200px" height="200px" />
-    <figcaption>Fox Creek Member of PGA &copy;</figcaption>
   </div>
   <div class="flex-1 flex align-items-center justify-content-center">
     <button pButton type="button" label="Back To Events" class="p-button-secondary" (click)="backToEvents()"></button>
@@ -16,7 +15,7 @@
 
 
 <p-table [value]="groups" styleClass="p-datatable-gridlines" responsiveLayout="scroll"
-  *ngIf="!errorMessage && !showForm">
+  *ngIf="!errorMessage && !showDetails">
   <ng-template pTemplate="caption">
     <div class="card">
       <div class="flex justify-content-end flex-wrap gap-5">
@@ -30,7 +29,7 @@
           </div>
         </div>
         <div class="flex flex align-items-center justify-content-center">
-          <button pButton type="button" label="Add Group"></button>
+          <button pButton type="button" label="Add Group" (click)="goToAddMode()"></button>
         </div>
       </div>
     </div>
@@ -49,10 +48,10 @@
         <div class="card">
           <div class="flex justify-content-center flex-wrap gap-2">
             <div class="flex flex align-items-center justify-content-center">
-              <button pButton type="button" label="Details" (click)="showDetails(group.GroupId)"></button>
+              <button pButton type="button" label="Details" (click)="goToDetails(group.GroupId)"></button>
             </div>
             <div class="flex flex align-items-center justify-content-center">
-              <button pButton type="button" label="Edit"></button>
+              <button pButton type="button" label="Edit" (click)="goToEditMode(group.GroupId)"></button>
             </div>
             <div class="flex flex align-items-center justify-content-center">
               <button pButton type="button" label="Delete"></button>
@@ -68,13 +67,59 @@
 </p-table>
 
 
-<section *ngIf="showForm">
-  show the form <button pButton type="button" label="Back To Groups" (click)="backToGroups()"></button><br />
-  GroupId: {{group.GroupId}} <br/>
-  GroupName: {{group.GroupName}} <br/>
-  OrganizationName: {{group.OrganizationName}} <br/>
-  SpronsorName: {{group.SponsorName}}
-  SponsorPhone: {{group.SponsorPhone}} <br/>
-  SponsorEmail: {{group.SponsorEmail}} <br/>
-  MaxGroupSize: {{group.MaxGroupSize}}
+<section *ngIf="showDetails">
+  <div *ngIf="!isEditMode && !isAddMode">
+    show the form <button pButton type="button" label="Back To Groups" (click)="backToGroups()"></button><br />
+    GroupId: {{group.GroupId}} <br />
+    GroupName: {{group.GroupName}} <br />
+    OrganizationName: {{group.OrganizationName}} <br />
+    SpronsorName: {{group.SponsorName}} <br />
+    SponsorPhone: {{group.SponsorPhone}} <br />
+    SponsorEmail: {{group.SponsorEmail}} <br />
+    MaxGroupSize: {{group.MaxGroupSize}} <br />
+  </div>
+
+  <div *ngIf="isEditMode || isAddMode">
+    edit mode <button pButton type="button" label="Back To Groups" (click)="backToGroups()"></button><br />
+
+
+    <form [formGroup]="groupForm" novalidate>
+      <p *ngIf="!groupForm.controls['GroupName'].valid && groupForm.controls['GroupName'].touched" class="formMessage">Please enter a group name.</p>
+      <label for="GroupName">Group Name:</label>
+      <input type="text" id="GroupName" autofocus formControlName="GroupName" value="{{group.GroupName}}">
+      <br/>
+
+      <p *ngIf="!groupForm.controls['OrganizationName'].valid && groupForm.controls['OrganizationName'].touched" class="formMessage">Please an organization name.</p>
+      <label for="OrganizationName">Organization Name:</label>
+      <input type="text" id="OrganizationName" autofocus formControlName="OrganizationName" value="{{group.OrganizationName}}">
+      <br/>
+
+      <p *ngIf="!groupForm.controls['SponsorName'].valid && groupForm.controls['SponsorName'].touched" class="formMessage">Please a sponsor name.</p>
+      <label for="SponsorName">Sponsor Name:</label>
+      <input type="text" id="SponsorName" autofocus formControlName="SponsorName" value="{{group.SponsorName}}">
+      <br/>
+
+      <p *ngIf="!groupForm.controls['SponsorPhone'].valid && groupForm.controls['SponsorPhone'].touched" class="formMessage">Please a valid phone number.</p>
+      <label for="SponsorPhone">Sponsor Phone:</label>
+      <input type="tel" id="SponsorPhone" autofocus formControlName="SponsorPhone" value="{{group.SponsorPhone}}">
+      <br/>
+
+      <p *ngIf="!groupForm.controls['SponsorEmail'].valid && groupForm.controls['SponsorEmail'].touched" class="formMessage">Please enter a valid email.</p>
+      <label for="SponsorEmail">Sponsor Email:</label>
+      <input type="email" id="SponsorEmail" autofocus formControlName="SponsorEmail" value="{{group.SponsorEmail}}">
+      <br/>
+
+      <p *ngIf="!groupForm.controls['MaxGroupSize'].valid && groupForm.controls['MaxGroupSize'].touched" class="formMessage">Please a max group size.</p>
+      <label for="MaxGroupSize">Max Group Size:</label>
+      <input type="number" id="MaxGroupSize" autofocus formControlName="MaxGroupSize" value="{{group.MaxGroupSize}}">
+      <br/>
+
+      <br/><br/>
+      <button pButton type="button" label="Save" (click)="saveEditForm()" *ngIf="isEditMode"></button>
+      <button pButton type="button" label="Add" (click)="saveAddForm()" *ngIf="isAddMode"></button>
+    </form>
+
+
+  </div>
+
 </section>

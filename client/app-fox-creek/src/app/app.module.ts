@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app.routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableModule } from 'primeng/table';
@@ -39,6 +40,8 @@ import { GroupService } from './services/group.service';
     ButtonModule,
     ToastModule,
     ToolbarModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [EventService, GroupService, MessageService],
   bootstrap: [AppComponent],
