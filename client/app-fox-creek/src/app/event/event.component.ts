@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { EventService } from '../services/event.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
@@ -8,7 +8,7 @@ import { Observable, Subscription } from 'rxjs';
   templateUrl: './event.component.html',
   styleUrls: ['./event.component.css'],
 })
-export class EventComponent implements OnInit {
+export class EventComponent implements OnInit, OnDestroy {
   logo: string = './assets/images/logo.jpg';
   logoAlt: string = 'Fox Creek Logo';
 

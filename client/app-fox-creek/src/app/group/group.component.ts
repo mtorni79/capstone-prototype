@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Group } from '../models/group';
 import { GroupService } from '../services/group.service';
 
 @Component({
@@ -8,14 +9,22 @@ import { GroupService } from '../services/group.service';
   templateUrl: './group.component.html',
   styleUrls: ['./group.component.css'],
 })
-export class GroupComponent implements OnInit {
+export class GroupComponent implements OnInit, OnDestroy {
+  logo: string = './assets/images/logo.jpg';
+  logoAlt: string = 'Fox Creek Logo';
+
   eventId!: string;
-  groups!: any;
+  eventName!: string;
+  groups!: Array<Group>;
+  group!: Group;
+
+  showForm: boolean = false;
 
   groupSubscription!: Subscription;
   errorMessage!: string;
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private groupService: GroupService
   ) {}
@@ -41,8 +50,27 @@ export class GroupComponent implements OnInit {
         },
         complete: () => {
           console.log(`called getGroupsByEventId()`);
+          this.eventName = this.groups[0].OrganizationName;
         },
       });
+  }
+
+  showDetails(groupId: number): void {
+    this.group = this.groups.find(
+      (element) => element.GroupId == groupId
+    ) as Group;
+
+    this.showForm = true;
+  }
+
+  backToEvents(): void {
+    this.router.navigate([''], {
+      relativeTo: this.route,
+    });
+  }
+
+  backToGroups(): void {
+    this.showForm = false;
   }
 
   ngOnDestroy(): void {
