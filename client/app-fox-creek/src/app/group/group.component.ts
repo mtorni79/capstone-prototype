@@ -1,4 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -11,23 +17,24 @@ import { GroupService } from '../services/group.service';
   styleUrls: ['./group.component.css'],
 })
 export class GroupComponent implements OnInit, OnDestroy {
+  @ViewChild('searchInput') searchInput!: ElementRef;
+
   logo: string = './assets/images/logo.jpg';
   logoAlt: string = 'Fox Creek Logo';
 
   groupForm!: FormGroup;
 
   eventId!: string;
-  eventName!: string;
+  eventName!: string; //TODO: get from service
   groups!: Array<Group>;
+  allGroups!: Array<Group>;
   group!: Group;
 
   showDetails: boolean = false;
   isEditMode: boolean = false;
   isAddMode: boolean = false;
 
-  groupSubscription!: Subscription;
-  groupUpdateSubscription!: Subscription;
-  groupAddSubscription!: Subscription;
+  subscription!: Subscription;
   errorMessage!: string;
 
   constructor(
@@ -45,11 +52,12 @@ export class GroupComponent implements OnInit, OnDestroy {
   }
 
   setGroups(eventId: string): void {
-    this.groupSubscription = this.groupService
+    this.subscription = this.groupService
       .getGroupsByEventId(eventId)
       .subscribe({
         next: (res: any) => {
           this.groups = res;
+          this.allGroups = res;
           console.log(this.groups);
         },
         error: (err) => {
@@ -99,20 +107,20 @@ export class GroupComponent implements OnInit, OnDestroy {
     this.showDetails = false;
     this.isEditMode = false;
     this.isAddMode = false;
+    this.groups = this.allGroups;
   }
 
   createEditForm() {
     this.groupForm = this.fb.group({
       GroupName: [this.group.GroupName, [Validators.required]],
-      OrganizationName: [this.group.OrganizationName, [Validators.required]],
       SponsorName: [this.group.SponsorName, [Validators.required]],
       SponsorPhone: [
         this.group.SponsorPhone,
         [
           Validators.required,
-          Validators.pattern('^[0-9]*$'),
-          Validators.minLength(10),
-          Validators.maxLength(10),
+          //Validators.pattern('^[0-9]'),
+          Validators.minLength(12),
+          Validators.maxLength(12),
         ],
       ],
       SponsorEmail: [
@@ -130,15 +138,14 @@ export class GroupComponent implements OnInit, OnDestroy {
     this.group = new Group();
     this.groupForm = this.fb.group({
       GroupName: [this.group.GroupName, [Validators.required]],
-      OrganizationName: [this.group.OrganizationName, [Validators.required]],
       SponsorName: [this.group.SponsorName, [Validators.required]],
       SponsorPhone: [
         this.group.SponsorPhone,
         [
           Validators.required,
-          Validators.pattern('^[0-9]*$'),
-          Validators.minLength(10),
-          Validators.maxLength(10),
+          //Validators.pattern('^[0-9]'),
+          Validators.minLength(12),
+          Validators.maxLength(12),
         ],
       ],
       SponsorEmail: [
@@ -153,66 +160,84 @@ export class GroupComponent implements OnInit, OnDestroy {
   }
 
   saveEditForm() {
+    alert(this.group.SponsorPhone.length);
     this.group.GroupName = this.groupForm.value.GroupName;
-    this.group.OrganizationName = this.groupForm.value.OrganizationName;
     this.group.SponsorName = this.groupForm.value.SponsorName;
     this.group.SponsorPhone = this.groupForm.value.SponsorPhone;
     this.group.SponsorEmail = this.groupForm.value.SponsorEmail;
     this.group.MaxGroupSize = this.groupForm.value.MaxGroupSize;
 
-    this.groupUpdateSubscription = this.groupService
-      .updateGroup(this.group)
-      .subscribe({
-        next: (res: any) => {
-          console.log(this.groups);
-        },
-        error: (err) => {
-          this.errorMessage = err;
-          console.log((this.errorMessage = err.message));
-        },
-        complete: () => {
-          console.log(`called updateGroupCalled()`);
-          this.setGroups(this.eventId);
-          alert('saved');
-        },
-      });
+    this.subscription = this.groupService.updateGroup(this.group).subscribe({
+      next: (res: any) => {
+        console.log(this.groups);
+      },
+      error: (err) => {
+        this.errorMessage = err;
+        console.log((this.errorMessage = err.message));
+      },
+      complete: () => {
+        console.log(`called updateGroup()`);
+        this.setGroups(this.eventId);
+        alert('saved');
+      },
+    });
   }
 
   saveAddForm() {
     this.group.GroupName = this.groupForm.value.GroupName;
-    this.group.OrganizationName = this.groupForm.value.OrganizationName;
+    this.group.OrganizationName = this.eventName;
     this.group.SponsorName = this.groupForm.value.SponsorName;
     this.group.SponsorPhone = this.groupForm.value.SponsorPhone;
     this.group.SponsorEmail = this.groupForm.value.SponsorEmail;
     this.group.MaxGroupSize = this.groupForm.value.MaxGroupSize;
 
-    this.groupUpdateSubscription = this.groupService
-      .updateGroup(this.group)
-      .subscribe({
-        next: (res: any) => {
-          console.log(this.groups);
-        },
-        error: (err) => {
-          this.errorMessage = err;
-          console.log((this.errorMessage = err.message));
-        },
-        complete: () => {
-          console.log(`called updateGroupCalled()`);
-          this.setGroups(this.eventId);
-          alert('saved');
-        },
-      });
+    this.subscription = this.groupService.addGroup(this.group).subscribe({
+      next: (res: any) => {
+        console.log(this.groups);
+      },
+      error: (err) => {
+        this.errorMessage = err;
+        console.log((this.errorMessage = err.message));
+      },
+      complete: () => {
+        console.log(`called addGroup()`);
+        this.setGroups(this.eventId);
+        alert('added');
+      },
+    });
+  }
+
+  deleteGroup(groupId: number): void {
+    this.subscription = this.groupService.deleteGroup(groupId).subscribe({
+      next: (res: any) => {
+        console.log(this.groups);
+      },
+      error: (err) => {
+        this.errorMessage = err;
+        console.log((this.errorMessage = err.message));
+      },
+      complete: () => {
+        console.log(`called deleteGroup()`);
+        this.setGroups(this.eventId);
+        alert('delete');
+      },
+    });
+  }
+
+  search() {
+    const searchValue = this.searchInput.nativeElement.value;
+    this.groups = this.groups.filter((element) => {
+      return element.GroupName.includes(searchValue);
+    });
+  }
+
+  viewAll() {
+    this.groups = this.allGroups;
   }
 
   ngOnDestroy(): void {
-    if (this.groupSubscription) {
-      this.groupSubscription.unsubscribe();
-    }
-    if (this.groupUpdateSubscription) {
-      this.groupUpdateSubscription.unsubscribe();
-    }
-    if (this.groupAddSubscription) {
-      this.groupAddSubscription.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
     }
   }
 }

@@ -23,6 +23,15 @@ export class GroupService {
     return results;
   }
 
+  addGroup(group: Group): Observable<Group> {
+    const results: Observable<Group> = this.http.post<Group>(
+      this.url,
+      group,
+      this.jsonContentTypeHeaders
+    );
+    console.log(`addGroup(${group}) returned ${results}`);
+    return results;
+  }
 
   updateGroup(group: Group): Observable<Group> {
     const results: Observable<Group> = this.http.put<Group>(
@@ -33,4 +42,13 @@ export class GroupService {
     console.log(`updateGroup(${group}) returned ${results}`);
     return results;
   }
+
+  deleteGroup(groupId: number): Observable<void> {
+    const results: Observable<void> = this.http.delete<void>(
+      `${this.url}/${groupId}`
+    );
+    console.log(`delete(${groupId}) returned ${results}`);
+    return results;
+  }
+
 }

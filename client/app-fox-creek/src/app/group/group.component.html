@@ -20,12 +20,12 @@
     <div class="card">
       <div class="flex justify-content-end flex-wrap gap-5">
         <div class="flex flex align-items-center justify-content-center">
-          <button pButton type="button" label="View All"></button>
+          <button pButton type="button" label="View All" (click)="viewAll()"></button>
         </div>
         <div class="flex flex align-items-center justify-content-center">
           <div class="p-inputgroup">
-            <button type="button" pButton pRipple label="Search"></button>
-            <input type="text" pInputText placeholder="Keyword">
+            <button type="button" pButton pRipple label="Search" (click)="search()"></button>
+            <input type="text" pInputText placeholder="Keyword" #searchInput>
           </div>
         </div>
         <div class="flex flex align-items-center justify-content-center">
@@ -37,8 +37,8 @@
 
   <ng-template pTemplate="header">
     <tr>
-      <th style="text-align: center">Group</th>
-      <th style="text-align: center">Action</th>
+      <th style="text-align: center">Group Name</th>
+      <th style="text-align: center">Actions</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-group>
@@ -54,10 +54,10 @@
               <button pButton type="button" label="Edit" (click)="goToEditMode(group.GroupId)"></button>
             </div>
             <div class="flex flex align-items-center justify-content-center">
-              <button pButton type="button" label="Delete"></button>
+              <button pButton type="button" label="Delete" (click)="deleteGroup(group.GroupId)"></button>
             </div>
             <div class="flex flex align-items-center justify-content-center">
-              <button pButton type="button" label="View Members"></button>
+              <button pButton type="button" label="View Golfers"></button>
             </div>
           </div>
         </div>
@@ -80,18 +80,13 @@
   </div>
 
   <div *ngIf="isEditMode || isAddMode">
-    edit mode <button pButton type="button" label="Back To Groups" (click)="backToGroups()"></button><br />
+    <button pButton type="button" label="Back To Groups" (click)="backToGroups()"></button><br />
 
 
     <form [formGroup]="groupForm" novalidate>
       <p *ngIf="!groupForm.controls['GroupName'].valid && groupForm.controls['GroupName'].touched" class="formMessage">Please enter a group name.</p>
       <label for="GroupName">Group Name:</label>
       <input type="text" id="GroupName" autofocus formControlName="GroupName" value="{{group.GroupName}}">
-      <br/>
-
-      <p *ngIf="!groupForm.controls['OrganizationName'].valid && groupForm.controls['OrganizationName'].touched" class="formMessage">Please an organization name.</p>
-      <label for="OrganizationName">Organization Name:</label>
-      <input type="text" id="OrganizationName" autofocus formControlName="OrganizationName" value="{{group.OrganizationName}}">
       <br/>
 
       <p *ngIf="!groupForm.controls['SponsorName'].valid && groupForm.controls['SponsorName'].touched" class="formMessage">Please a sponsor name.</p>
