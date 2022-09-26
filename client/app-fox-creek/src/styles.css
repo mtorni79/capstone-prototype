@@ -37,7 +37,9 @@ h2 {
   text-align: center;
 }
 
-input[type=text] {
+
+
+.form-input{
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -45,6 +47,11 @@ input[type=text] {
   box-sizing: border-box;
   border-radius: 4px;
 }
+
+.form-input-error {
+  border: 1px solid red;
+}
+
 
 .form-error {
   color: red;

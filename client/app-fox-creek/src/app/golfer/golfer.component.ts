@@ -30,7 +30,7 @@ export class GolferComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private golferService: GolferService,
-    private fb: FormBuilder,
+    private fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
@@ -58,7 +58,7 @@ export class GolferComponent implements OnInit {
     });
   }
 
-  goToEditMode(golferId: number) {
+  goToEditMode(golferId: number): void {
     this.golfer = this.golfers.find(
       (element) => element.MemberId == golferId
     ) as Member;
@@ -67,18 +67,21 @@ export class GolferComponent implements OnInit {
     this.isEditMode = true;
   }
 
-  goToAddMode(golferId: number) {
+  goToAddMode(golferId: number): void {
     alert('delete: ' + golferId);
   }
 
-  deleteGolfer(golferId: number) {
+  deleteGolfer(golferId: number): void {
     alert('delete: ' + golferId);
   }
 
-  createForm() {
+  createForm(): void {
     this.golferForm = this.fb.group({
       MemberName: [this.golfer.MemberName, [Validators.required]],
-      MemberEmail: [this.golfer.MemberEmail, [Validators.required, Validators.email],],
+      MemberEmail: [
+        this.golfer.MemberEmail,
+        [Validators.required, Validators.email],
+      ],
       MemberPhone: [
         this.golfer.MemberPhone,
         [
@@ -87,8 +90,12 @@ export class GolferComponent implements OnInit {
           Validators.minLength(12),
           Validators.maxLength(12),
         ],
-      ]
+      ],
     });
+  }
+
+  isInputError(field: string): boolean {
+    return !this.golferForm.controls[field].valid && this.golferForm.controls[field].touched
   }
 
   ngOnDestroy(): void {

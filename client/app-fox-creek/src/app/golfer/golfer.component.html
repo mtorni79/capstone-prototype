@@ -54,9 +54,19 @@
     <form [formGroup]="golferForm" novalidate>
       <div class="field">
         <label for="MemberName" class="block">Name</label>
-        <input id="MemberName" type="text" formControlName="MemberName">
+        <input id="MemberName" type="text" formControlName="MemberName" [ngClass]="{'form-input' : true, 'form-input-error' : isInputError('MemberName')}">
         <small class="form-error block" *ngIf="!golferForm.controls['MemberName'].valid && golferForm.controls['MemberName'].touched">Please enter a valid name.</small>
-    </div>
+      </div>
+      <div class="field">
+        <label for="MemberEmail" class="block">Email</label>
+        <input id="MemberEmail" type="text" formControlName="MemberEmail" [ngClass]="{'form-input' : true, 'form-input-error' : isInputError('MemberEmail')}">
+        <small class="form-error block" *ngIf="!golferForm.controls['MemberEmail'].valid && golferForm.controls['MemberEmail'].touched">Please enter a valid email address.</small>
+      </div>
+      <div class="field">
+        <label for="MemberPhone" class="block">Phone Number</label>
+        <input id="MemberPhone" type="text" formControlName="MemberPhone" [ngClass]="{'form-input' : true, 'form-input-error' : isInputError('MemberPhone')}">
+        <small class="form-error block" *ngIf="!golferForm.controls['MemberPhone'].valid && golferForm.controls['MemberPhone'].touched">Please enter a valid phone number.</small>
+      </div>
     </form>
     <ng-template pTemplate="footer">
       Footer content here
