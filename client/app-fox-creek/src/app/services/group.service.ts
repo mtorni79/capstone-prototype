@@ -50,5 +50,4 @@ export class GroupService {
     console.log(`delete(${groupId}) returned ${results}`);
     return results;
   }
-
 }

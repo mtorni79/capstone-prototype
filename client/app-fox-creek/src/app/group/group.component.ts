@@ -110,6 +110,13 @@ export class GroupComponent implements OnInit, OnDestroy {
     this.groups = this.allGroups;
   }
 
+  goToGolfers(groupId: number): void {
+    this.router.navigate(['../golfers'], {
+      relativeTo: this.route,
+      queryParams: { groupId: `${groupId}` },
+    });
+  }
+
   createEditForm() {
     this.groupForm = this.fb.group({
       GroupName: [this.group.GroupName, [Validators.required]],

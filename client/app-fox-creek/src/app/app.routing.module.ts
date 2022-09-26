@@ -4,6 +4,7 @@ import { MainComponent } from './main/main.component';
 import { Route, RouterModule, Routes } from '@angular/router';
 import { GroupComponent } from './group/group.component';
 import { EventComponent } from './event/event.component';
+import { GolferComponent } from './golfer/golfer.component';
 
 const fallbackRoute: Route = {
   path: '**',
@@ -12,6 +13,7 @@ const fallbackRoute: Route = {
 
 const routes: Routes = [
   { path: 'groups', component: GroupComponent },
+  { path: 'golfers', component: GolferComponent },
   fallbackRoute,
 ];
 

@@ -20,7 +20,8 @@ import { EventService } from './services/event.service';
 import { GroupComponent } from './group/group.component';
 import { EventComponent } from './event/event.component';
 import { GroupService } from './services/group.service';
-
+import { GolferService } from './services/golfer.service';
+import { GolferComponent } from './golfer/golfer.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,9 @@ import { GroupService } from './services/group.service';
     MainComponent,
     FooterComponent,
     GroupComponent,
-    EventComponent],
+    EventComponent,
+    GolferComponent,
+  ],
   imports: [
     BrowserModule,
     CommonModule,
@@ -43,7 +46,7 @@ import { GroupService } from './services/group.service';
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [EventService, GroupService, MessageService],
+  providers: [EventService, GroupService, GolferService, MessageService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
