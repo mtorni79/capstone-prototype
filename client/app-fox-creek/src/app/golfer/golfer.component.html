@@ -1,2 +1,26 @@
 <p>golfer works!</p>
-<div *ngFor="let member of group?.Members">{{member.MemberName}}</div>
+
+<section class="error-message" *ngIf="errorMessage">
+  {{ errorMessage | json }}
+</section>
+
+<p-table [value]="golfers" styleClass="p-datatable-gridlines" responsiveLayout="scroll" *ngIf="!errorMessage">
+  <ng-template pTemplate="header">
+    <tr>
+      <th style="text-align: center">Golfer Name</th>
+      <th style="text-align: center">Golfer Email</th>
+      <th style="text-align: center">Golfer Phone Number</th>
+      <th style="text-align: center">Actions</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-golfer>
+    <tr>
+      <td>{{golfer.MemberName}}</td>
+      <td>{{golfer.MemberEmail}}</td>
+      <td>{{golfer.MemberPhone}}</td>
+      <td style="text-align: center">
+        <button pButton type="button" label="Groups"></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

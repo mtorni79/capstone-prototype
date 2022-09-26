@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Group } from '../models/group';
+import { Member } from '../models/member';
 import { GolferService } from '../services/golfer.service';
 
 @Component({
@@ -11,7 +12,8 @@ import { GolferService } from '../services/golfer.service';
 })
 export class GolferComponent implements OnInit {
    groupId!: number;
-   group!: Group;
+   //group!: Group;
+   golfers!: Array<Member>;
 
   subscription!: Subscription;
   errorMessage!: string;
@@ -34,8 +36,8 @@ export class GolferComponent implements OnInit {
       .getGroupById(groupId)
       .subscribe({
         next: (res: any) => {
-          this.group = res;
-          console.log(this.group);
+          this.golfers = res.Members;
+          console.log(this.golfers);
         },
         error: (err) => {
           this.errorMessage = err;
