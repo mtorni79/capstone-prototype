@@ -1,0 +1,8 @@
+#golferWrapper {
+  padding-top: 20px;
+}
+
+:host ::ng-deep .header-panel.p-panel {
+  padding-bottom: 50px;
+}
+

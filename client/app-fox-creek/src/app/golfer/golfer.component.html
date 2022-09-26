@@ -1,26 +1,68 @@
-<p>golfer works!</p>
+<div id="golferWrapper" *ngIf="!isLoading">
 
-<section class="error-message" *ngIf="errorMessage">
-  {{ errorMessage | json }}
-</section>
+  <section class="error-message" *ngIf="errorMessage">
+    {{ errorMessage | json }}
+  </section>
 
-<p-table [value]="golfers" styleClass="p-datatable-gridlines" responsiveLayout="scroll" *ngIf="!errorMessage">
-  <ng-template pTemplate="header">
-    <tr>
-      <th style="text-align: center">Golfer Name</th>
-      <th style="text-align: center">Golfer Email</th>
-      <th style="text-align: center">Golfer Phone Number</th>
-      <th style="text-align: center">Actions</th>
-    </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-golfer>
-    <tr>
-      <td>{{golfer.MemberName}}</td>
-      <td>{{golfer.MemberEmail}}</td>
-      <td>{{golfer.MemberPhone}}</td>
-      <td style="text-align: center">
-        <button pButton type="button" label="Groups"></button>
-      </td>
-    </tr>
-  </ng-template>
-</p-table>
+  <p-panel styleClass="header-panel">
+    <ng-template pTemplate="header">
+      <h1>Golfer's for Group: {{groupName}}</h1>
+    </ng-template>
+    <div class="flex justify-content-end flex-wrap gap-5">
+      <div class="flex flex align-items-center justify-content-center">
+        <button pButton type="button" label="View All"></button>
+      </div>
+    </div>
+  </p-panel>
+
+  <p-table [value]="golfers" styleClass="p-datatable-gridlines" responsiveLayout="scroll"
+    *ngIf="!errorMessage && !isEditMode && !isAddMode">
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="text-align: center">Golfer Name</th>
+        <th style="text-align: center">Golfer Email</th>
+        <th style="text-align: center">Golfer Phone Number</th>
+        <th style="text-align: center">Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-golfer>
+      <tr>
+        <td>{{golfer.MemberName}}</td>
+        <td>{{golfer.MemberEmail}}</td>
+        <td>{{golfer.MemberPhone}}</td>
+        <td style="text-align: center">
+          <div class="card">
+            <div class="flex justify-content-center flex-wrap gap-2">
+              <div class="flex flex align-items-center justify-content-center">
+                <button pButton type="button" label="Edit" (click)="goToEditMode(golfer.MemberId)"></button>
+              </div>
+              <div class="flex flex align-items-center justify-content-center">
+                <button pButton type="button" label="Delete" (click)="deleteGolfer(golfer.MemberId)"></button>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+
+  <p-panel *ngIf="isEditMode || isAddMode">
+    <ng-template pTemplate="header">
+      <h2>Edit Existing Golfer</h2>
+    </ng-template>
+    <form [formGroup]="golferForm" novalidate>
+      <div class="field">
+        <label for="MemberName" class="block">Name</label>
+        <input id="MemberName" type="text" formControlName="MemberName">
+        <small class="form-error block" *ngIf="!golferForm.controls['MemberName'].valid && golferForm.controls['MemberName'].touched">Please enter a valid name.</small>
+    </div>
+    </form>
+    <ng-template pTemplate="footer">
+      Footer content here
+    </ng-template>
+  </p-panel>
+
+
+
+</div>

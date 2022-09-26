@@ -10,7 +10,6 @@ import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
-import { ToolbarModule } from 'primeng/toolbar';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -22,6 +21,7 @@ import { EventComponent } from './event/event.component';
 import { GroupService } from './services/group.service';
 import { GolferService } from './services/golfer.service';
 import { GolferComponent } from './golfer/golfer.component';
+import { PanelModule } from 'primeng/panel';
 
 @NgModule({
   declarations: [
@@ -42,9 +42,9 @@ import { GolferComponent } from './golfer/golfer.component';
     TableModule,
     ButtonModule,
     ToastModule,
-    ToolbarModule,
     FormsModule,
     ReactiveFormsModule,
+    PanelModule,
   ],
   providers: [EventService, GroupService, GolferService, MessageService],
   bootstrap: [AppComponent],
