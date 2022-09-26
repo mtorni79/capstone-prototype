@@ -10,7 +10,7 @@
     </ng-template>
     <div class="flex justify-content-end flex-wrap gap-5">
       <div class="flex flex align-items-center justify-content-center">
-        <button pButton type="button" label="View All"></button>
+        <button pButton type="button" label="Back To Groups" (click)="backToGroups()"></button>
       </div>
     </div>
   </p-panel>
@@ -54,25 +54,40 @@
     <form [formGroup]="golferForm" novalidate>
       <div class="field">
         <label for="MemberName" class="block">Name</label>
-        <input id="MemberName" type="text" formControlName="MemberName" [ngClass]="{'form-input' : true, 'form-input-error' : isInputError('MemberName')}">
-        <small class="form-error block" *ngIf="!golferForm.controls['MemberName'].valid && golferForm.controls['MemberName'].touched">Please enter a valid name.</small>
+        <input id="MemberName" type="text" formControlName="MemberName"
+          [ngClass]="{'form-input' : true, 'form-input-error' : isInputError('MemberName')}">
+        <small class="form-error block"
+          *ngIf="!golferForm.controls['MemberName'].valid && golferForm.controls['MemberName'].touched">Please enter a
+          valid name.</small>
       </div>
       <div class="field">
         <label for="MemberEmail" class="block">Email</label>
-        <input id="MemberEmail" type="text" formControlName="MemberEmail" [ngClass]="{'form-input' : true, 'form-input-error' : isInputError('MemberEmail')}">
-        <small class="form-error block" *ngIf="!golferForm.controls['MemberEmail'].valid && golferForm.controls['MemberEmail'].touched">Please enter a valid email address.</small>
+        <input id="MemberEmail" type="text" formControlName="MemberEmail"
+          [ngClass]="{'form-input' : true, 'form-input-error' : isInputError('MemberEmail')}">
+        <small class="form-error block"
+          *ngIf="!golferForm.controls['MemberEmail'].valid && golferForm.controls['MemberEmail'].touched">Please enter a
+          valid email address.</small>
       </div>
       <div class="field">
         <label for="MemberPhone" class="block">Phone Number</label>
-        <input id="MemberPhone" type="text" formControlName="MemberPhone" [ngClass]="{'form-input' : true, 'form-input-error' : isInputError('MemberPhone')}">
-        <small class="form-error block" *ngIf="!golferForm.controls['MemberPhone'].valid && golferForm.controls['MemberPhone'].touched">Please enter a valid phone number.</small>
+        <input id="MemberPhone" type="text" formControlName="MemberPhone"
+          [ngClass]="{'form-input' : true, 'form-input-error' : isInputError('MemberPhone')}">
+        <small class="form-error block"
+          *ngIf="!golferForm.controls['MemberPhone'].valid && golferForm.controls['MemberPhone'].touched">Please enter a
+          valid phone number.</small>
       </div>
     </form>
     <ng-template pTemplate="footer">
-      Footer content here
+      <div class="flex justify-content-center flex-wrap gap-2">
+        <div class="flex flex align-items-center justify-content-center">
+          <button pButton type="button" label="Back" (click)="backToGolfers()"></button>
+        </div>
+        <div class="flex flex align-items-center justify-content-center" *ngIf="golferForm.status === 'VALID'">
+          <button pButton type="button" label="Save" (click)="saveEditForm(golfer.MemberId)"></button>
+        </div>
+      </div>
     </ng-template>
   </p-panel>
-
 
 
 </div>

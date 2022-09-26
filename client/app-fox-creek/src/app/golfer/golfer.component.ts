@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { Group } from '../models/group';
 import { Member } from '../models/member';
 import { GolferService } from '../services/golfer.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'fc-golfer',
@@ -30,7 +31,8 @@ export class GolferComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private golferService: GolferService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -75,6 +77,15 @@ export class GolferComponent implements OnInit {
     alert('delete: ' + golferId);
   }
 
+  backToGolfers(): void {
+    this.isEditMode = false;
+    this.isAddMode = false;
+  }
+
+  backToGroups(): void {
+    this.location.back();
+  }
+
   createForm(): void {
     this.golferForm = this.fb.group({
       MemberName: [this.golfer.MemberName, [Validators.required]],
@@ -94,8 +105,13 @@ export class GolferComponent implements OnInit {
     });
   }
 
+  saveEditForm(golferId: number): void {}
+
   isInputError(field: string): boolean {
-    return !this.golferForm.controls[field].valid && this.golferForm.controls[field].touched
+    return (
+      !this.golferForm.controls[field].valid &&
+      this.golferForm.controls[field].touched
+    );
   }
 
   ngOnDestroy(): void {
