@@ -2,6 +2,10 @@
   padding-top: 20px;
 }
 
+#groupSection {
+  padding-bottom: 50px;
+}
+
 :host ::ng-deep .header-panel.p-panel {
   padding-bottom: 50px;
 }

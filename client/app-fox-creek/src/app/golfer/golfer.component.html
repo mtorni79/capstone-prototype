@@ -4,17 +4,17 @@
 
 
 <div id="golferWrapper" *ngIf="!isLoading && !errorMessage">
-
-  <p-panel styleClass="header-panel">
-    <ng-template pTemplate="header">
-      <h1>Golfer's for Group: {{groupName}}</h1>
-    </ng-template>
-    <div class="flex justify-content-end flex-wrap gap-5">
-      <div class="flex flex align-items-center justify-content-center">
-        <button pButton type="button" label="Back To Groups" (click)="backToGroups()"></button>
+  <section id="groupSection">
+    <div class="flex justify-content-between flex-wrap" style="width:100%">
+      <div class="flex align-items-center justify-content-center">
+        <h1>Golfer's for Group: {{groupName}}</h1>
+      </div>
+      <div class="flex align-items-center justify-content-center">
+        <button pButton type="button" label="Back To Groups" class="p-button-secondary"
+          (click)="backToGroups()"></button>
       </div>
     </div>
-  </p-panel>
+  </section>
 
   <p-table [value]="golfers" styleClass="p-datatable-gridlines" responsiveLayout="scroll"
     *ngIf="!isEditMode && !isAddMode">
@@ -59,7 +59,14 @@
 
   <p-panel *ngIf="isEditMode || isAddMode">
     <ng-template pTemplate="header">
-      <h2>{{isEditMode ? 'Edit Existing Golfer' : 'Add New Golfer'}}</h2>
+      <div class="flex justify-content-between flex-wrap" style="width:100%">
+        <div class="flex align-items-center justify-content-center">
+          <h2>{{isEditMode ? 'Edit Existing Golfer' : 'Add New Golfer'}}</h2>
+        </div>
+        <div class="flex align-items-center justify-content-center">
+          <button pButton type="button" label="Back" (click)="backToGolfers()"></button>
+        </div>
+      </div>
     </ng-template>
     <form [formGroup]="golferForm" novalidate>
       <div class="field">
@@ -93,8 +100,10 @@
           <button pButton type="button" label="Back" (click)="backToGolfers()"></button>
         </div>
         <div class="flex flex align-items-center justify-content-center">
-          <button pButton type="button" label="Save" (click)="saveForm(false)" *ngIf="isEditMode && golferForm.status === 'VALID'"></button>
-          <button pButton type="button" label="Add" (click)="saveForm(true)" *ngIf="isAddMode && golferForm.status === 'VALID'"></button>
+          <button pButton type="button" label="Save" (click)="saveForm(false)"
+            *ngIf="isEditMode && golferForm.status === 'VALID'"></button>
+          <button pButton type="button" label="Add" (click)="saveForm(true)"
+            *ngIf="isAddMode && golferForm.status === 'VALID'"></button>
         </div>
       </div>
     </ng-template>

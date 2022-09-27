@@ -4,10 +4,10 @@ footer {
   align-items: center;
   border-top: 2px solid var(--main-green-color);
   padding-top: 10px;
+  width: 100%;
   /*
   position: fixed;
   bottom: 0px;
-  width: 100%;
   */
 }
 

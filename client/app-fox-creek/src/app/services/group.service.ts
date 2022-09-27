@@ -7,7 +7,7 @@ import { Group } from '../models/group';
   providedIn: 'root',
 })
 export class GroupService {
-  url = 'http://localhost:8082/api/groups';
+  groupUrl = 'http://localhost:8082/api/groups';
   errorMessage!: string;
   jsonContentTypeHeaders = {
     headers: new HttpHeaders().set('Content-Type', 'application/json'),
@@ -17,7 +17,7 @@ export class GroupService {
 
   getGroupsByEventId(eventId: string): Observable<Group> {
     const results: Observable<Group> = this.http.get<Group>(
-      `${this.url}/byorganization/${eventId}`
+      `${this.groupUrl}/byorganization/${eventId}`
     );
     console.log(`getGroupsByEventId() returned ${results}`);
     return results;
@@ -25,7 +25,7 @@ export class GroupService {
 
   addGroup(group: Group): Observable<Group> {
     const results: Observable<Group> = this.http.post<Group>(
-      this.url,
+      this.groupUrl,
       group,
       this.jsonContentTypeHeaders
     );
@@ -35,7 +35,7 @@ export class GroupService {
 
   updateGroup(group: Group): Observable<Group> {
     const results: Observable<Group> = this.http.put<Group>(
-      this.url,
+      this.groupUrl,
       group,
       this.jsonContentTypeHeaders
     );
@@ -45,7 +45,7 @@ export class GroupService {
 
   deleteGroup(groupId: number): Observable<void> {
     const results: Observable<void> = this.http.delete<void>(
-      `${this.url}/${groupId}`
+      `${this.groupUrl}/${groupId}`
     );
     console.log(`delete(${groupId}) returned ${results}`);
     return results;

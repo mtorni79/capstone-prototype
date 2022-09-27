@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class EventService {
-  url = 'http://localhost:8082/api/organizations';
+  eventUrl = 'http://localhost:8082/api/organizations';
   errorMessage!: string;
   jsonContentTypeHeaders = {
     headers: new HttpHeaders().set('Content-Type', 'application/json'),
@@ -15,7 +15,7 @@ export class EventService {
   constructor(private http: HttpClient) {}
 
   getEvents(): Observable<Event> {
-    const results: Observable<Event> = this.http.get<Event>(this.url);
+    const results: Observable<Event> = this.http.get<Event>(this.eventUrl);
     console.log(`getEvents() returned ${results}`);
     return results;
   }

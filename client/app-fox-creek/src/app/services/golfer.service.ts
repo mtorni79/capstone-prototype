@@ -8,7 +8,7 @@ import { Member } from '../models/member';
   providedIn: 'root',
 })
 export class GolferService {
-  url = 'http://localhost:8082/api/groups';
+  golferUrl = 'http://localhost:8082/api/groups';
   formContentTypeHeaders = {
     headers: new HttpHeaders().set(
       'Content-Type',
@@ -20,7 +20,7 @@ export class GolferService {
 
   getGroupById(groupId: number): Observable<Group> {
     const results: Observable<Group> = this.http.get<Group>(
-      `${this.url}/${groupId}`
+      `${this.golferUrl}/${groupId}`
     );
     console.log(`getGroupById() returned ${JSON.stringify(results)}`);
     return results;
@@ -34,7 +34,7 @@ export class GolferService {
       .set('MemberPhone', golfer.MemberPhone);
 
     const results: Observable<Group> = this.http.put<Group>(
-      `${this.url}/${groupId}` + '/members',
+      `${this.golferUrl}/${groupId}` + '/members',
       payload,
       this.formContentTypeHeaders
     );
@@ -49,7 +49,7 @@ export class GolferService {
       .set('MemberPhone', golfer.MemberPhone);
 
     const results: Observable<Group> = this.http.post<Group>(
-      `${this.url}/${groupId}` + '/members',
+      `${this.golferUrl}/${groupId}` + '/members',
       payload,
       this.formContentTypeHeaders
     );
@@ -59,7 +59,7 @@ export class GolferService {
 
   deleteGolfer(groupId: number, golferId: number): Observable<void> {
     const results: Observable<void> = this.http.delete<void>(
-      `${this.url}/${groupId}` + '/members/' + `${golferId}`
+      `${this.golferUrl}/${groupId}` + '/members/' + `${golferId}`
     );
     console.log(`addGolfer() returned ${JSON.stringify(results)}`);
     return results;
