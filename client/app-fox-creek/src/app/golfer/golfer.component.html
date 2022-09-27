@@ -59,7 +59,7 @@
 
   <p-panel *ngIf="isEditMode || isAddMode">
     <ng-template pTemplate="header">
-      <h2>Edit Existing Golfer</h2>
+      <h2>{{isEditMode ? 'Edit Existing Golfer' : 'Add New Golfer'}}</h2>
     </ng-template>
     <form [formGroup]="golferForm" novalidate>
       <div class="field">
@@ -72,7 +72,7 @@
       </div>
       <div class="field">
         <label for="MemberEmail" class="block">Email</label>
-        <input id="MemberEmail" type="text" formControlName="MemberEmail"
+        <input id="MemberEmail" type="email" formControlName="MemberEmail"
           [ngClass]="{'form-input' : true, 'form-input-error' : isInputError('MemberEmail')}">
         <small class="form-error block"
           *ngIf="!golferForm.controls['MemberEmail'].valid && golferForm.controls['MemberEmail'].touched">Please enter a
@@ -80,7 +80,7 @@
       </div>
       <div class="field">
         <label for="MemberPhone" class="block">Phone Number</label>
-        <input id="MemberPhone" type="text" formControlName="MemberPhone"
+        <input id="MemberPhone" type="tel" formControlName="MemberPhone"
           [ngClass]="{'form-input' : true, 'form-input-error' : isInputError('MemberPhone')}">
         <small class="form-error block"
           *ngIf="!golferForm.controls['MemberPhone'].valid && golferForm.controls['MemberPhone'].touched">Please enter a
@@ -94,7 +94,7 @@
         </div>
         <div class="flex flex align-items-center justify-content-center">
           <button pButton type="button" label="Save" (click)="saveForm(false)" *ngIf="isEditMode && golferForm.status === 'VALID'"></button>
-          <button pButton type="button" label="Save" (click)="saveForm(true)" *ngIf="isAddMode && golferForm.status === 'VALID'"></button>
+          <button pButton type="button" label="Add" (click)="saveForm(true)" *ngIf="isAddMode && golferForm.status === 'VALID'"></button>
         </div>
       </div>
     </ng-template>

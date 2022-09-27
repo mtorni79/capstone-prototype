@@ -13,7 +13,6 @@
   {{ errorMessage | json }}
 </section>
 
-
 <p-table [value]="groups" styleClass="p-datatable-gridlines" responsiveLayout="scroll"
   *ngIf="!errorMessage && !showDetails">
   <ng-template pTemplate="caption">
@@ -54,7 +53,8 @@
               <button pButton type="button" label="Edit" (click)="goToEditMode(group.GroupId)"></button>
             </div>
             <div class="flex flex align-items-center justify-content-center">
-              <button pButton type="button" label="Delete" (click)="deleteGroup(group.GroupId)"></button>
+              <button (click)="confirmDelete(group.GroupId, group.GroupName)" pButton icon="pi pi-trash"
+                label="Delete"></button>
             </div>
             <div class="flex flex align-items-center justify-content-center">
               <button pButton type="button" label="View Golfers" (click)="goToGolfers(group.GroupId)"></button>
@@ -69,6 +69,16 @@
 
 <section *ngIf="showDetails">
   <div *ngIf="!isEditMode && !isAddMode">
+    <p-panel [toggleable]="true">
+      <ng-template pTemplate="header">
+        Header content here
+      </ng-template>
+      Body Content
+      <ng-template pTemplate="footer">
+        Footer content here
+      </ng-template>
+    </p-panel>
+    <!--
     show the form <button pButton type="button" label="Back To Groups" (click)="backToGroups()"></button><br />
     GroupId: {{group.GroupId}} <br />
     GroupName: {{group.GroupName}} <br />
@@ -77,44 +87,75 @@
     SponsorPhone: {{group.SponsorPhone}} <br />
     SponsorEmail: {{group.SponsorEmail}} <br />
     MaxGroupSize: {{group.MaxGroupSize}} <br />
+    -->
   </div>
 
-  <div *ngIf="isEditMode || isAddMode">
-    <button pButton type="button" label="Back To Groups" (click)="backToGroups()"></button><br />
 
-
+  <p-panel *ngIf="isEditMode || isAddMode">
+    <ng-template pTemplate="header">
+      <div class="flex justify-content-between flex-wrap" style="width:100%">
+        <div class="flex align-items-center justify-content-center">
+          <h2>{{isEditMode ? 'Edit Existing Group' : 'Add New Group'}}</h2>
+        </div>
+        <div class="flex align-items-center justify-content-center">
+          <button pButton type="button" label="Back" (click)="backToGroups()"></button>
+        </div>
+      </div>
+    </ng-template>
     <form [formGroup]="groupForm" novalidate>
-      <p *ngIf="!groupForm.controls['GroupName'].valid && groupForm.controls['GroupName'].touched" class="formMessage">Please enter a group name.</p>
-      <label for="GroupName">Group Name:</label>
-      <input type="text" id="GroupName" autofocus formControlName="GroupName" value="{{group.GroupName}}">
-      <br/>
-
-      <p *ngIf="!groupForm.controls['SponsorName'].valid && groupForm.controls['SponsorName'].touched" class="formMessage">Please a sponsor name.</p>
-      <label for="SponsorName">Sponsor Name:</label>
-      <input type="text" id="SponsorName" autofocus formControlName="SponsorName" value="{{group.SponsorName}}">
-      <br/>
-
-      <p *ngIf="!groupForm.controls['SponsorPhone'].valid && groupForm.controls['SponsorPhone'].touched" class="formMessage">Please a valid phone number.</p>
-      <label for="SponsorPhone">Sponsor Phone:</label>
-      <input type="tel" id="SponsorPhone" autofocus formControlName="SponsorPhone" value="{{group.SponsorPhone}}">
-      <br/>
-
-      <p *ngIf="!groupForm.controls['SponsorEmail'].valid && groupForm.controls['SponsorEmail'].touched" class="formMessage">Please enter a valid email.</p>
-      <label for="SponsorEmail">Sponsor Email:</label>
-      <input type="email" id="SponsorEmail" autofocus formControlName="SponsorEmail" value="{{group.SponsorEmail}}">
-      <br/>
-
-      <p *ngIf="!groupForm.controls['MaxGroupSize'].valid && groupForm.controls['MaxGroupSize'].touched" class="formMessage">Please a max group size.</p>
-      <label for="MaxGroupSize">Max Group Size:</label>
-      <input type="number" id="MaxGroupSize" autofocus formControlName="MaxGroupSize" value="{{group.MaxGroupSize}}">
-      <br/>
-
-      <br/><br/>
-      <button pButton type="button" label="Save" (click)="saveEditForm()" *ngIf="isEditMode"></button>
-      <button pButton type="button" label="Add" (click)="saveAddForm()" *ngIf="isAddMode"></button>
+      <div class="field">
+        <label for="GroupName" class="block">Group Name</label>
+        <input id="GroupName" type="text" formControlName="GroupName"
+          [ngClass]="{'form-input' : true, 'form-input-error' : isInputError('GroupName')}">
+        <small class="form-error block"
+          *ngIf="!groupForm.controls['GroupName'].valid && groupForm.controls['GroupName'].touched">Please enter a
+          valid name.</small>
+      </div>
+      <div class="field">
+        <label for="SponsorName" class="block">Sponsor Name</label>
+        <input id="SponsorName" type="text" formControlName="SponsorName"
+          [ngClass]="{'form-input' : true, 'form-input-error' : isInputError('SponsorName')}">
+        <small class="form-error block"
+          *ngIf="!groupForm.controls['SponsorName'].valid && groupForm.controls['SponsorName'].touched">Please enter a
+          valid sponsor name.</small>
+      </div>
+      <div class="field">
+        <label for="SponsorPhone" class="block">Sponsor Phone</label>
+        <input id="SponsorPhone" type="tel" formControlName="SponsorPhone"
+          [ngClass]="{'form-input' : true, 'form-input-error' : isInputError('SponsorPhone')}">
+        <small class="form-error block"
+          *ngIf="!groupForm.controls['SponsorPhone'].valid && groupForm.controls['SponsorPhone'].touched">Please enter a
+          valid sponsor phone number.</small>
+      </div>
+      <div class="field">
+        <label for="SponsorEmail" class="block">Sponsor Email</label>
+        <input id="SponsorEmail" type="email" formControlName="SponsorEmail"
+          [ngClass]="{'form-input' : true, 'form-input-error' : isInputError('SponsorEmail')}">
+        <small class="form-error block"
+          *ngIf="!groupForm.controls['SponsorEmail'].valid && groupForm.controls['SponsorEmail'].touched">Please enter a
+          valid sponsor email.</small>
+      </div>
+      <div class="field">
+        <label for="MaxGroupSize" class="block">Max Group Size</label>
+        <input id="MaxGroupSize" type="number" formControlName="MaxGroupSize"
+          [ngClass]="{'form-input' : true, 'form-input-error' : isInputError('MaxGroupSize')}">
+        <small class="form-error block"
+          *ngIf="!groupForm.controls['MaxGroupSize'].valid && groupForm.controls['MaxGroupSize'].touched">Please enter a
+          valid max group size.</small>
+      </div>
     </form>
-
-
-  </div>
-
+    <ng-template pTemplate="footer">
+      <div class="flex justify-content-center flex-wrap gap-2">
+        <div class="flex flex align-items-center justify-content-center">
+          <button pButton type="button" label="Back" (click)="backToGroups()"></button>
+        </div>
+        <div class="flex flex align-items-center justify-content-center">
+          <button pButton type="button" label="Save" (click)="saveEditForm()"
+            *ngIf="isEditMode && groupForm.status === 'VALID'"></button>
+          <button pButton type="button" label="Add" (click)="saveAddForm()"
+            *ngIf="isAddMode && groupForm.status === 'VALID'"></button>
+        </div>
+      </div>
+    </ng-template>
+  </p-panel>
 </section>

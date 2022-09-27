@@ -10,6 +10,9 @@ import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -45,8 +48,16 @@ import { PanelModule } from 'primeng/panel';
     FormsModule,
     ReactiveFormsModule,
     PanelModule,
+    ConfirmDialogModule,
+    OverlayPanelModule,
   ],
-  providers: [EventService, GroupService, GolferService, MessageService],
+  providers: [
+    EventService,
+    GroupService,
+    GolferService,
+    MessageService,
+    ConfirmationService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

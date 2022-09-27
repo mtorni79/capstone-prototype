@@ -10,6 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Group } from '../models/group';
 import { GroupService } from '../services/group.service';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'fc-group',
@@ -41,7 +42,9 @@ export class GroupComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private groupService: GroupService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService
   ) {}
 
   ngOnInit(): void {
@@ -107,7 +110,7 @@ export class GroupComponent implements OnInit, OnDestroy {
     this.showDetails = false;
     this.isEditMode = false;
     this.isAddMode = false;
-    this.groups = this.allGroups;
+    this.setGroups(this.eventId);
   }
 
   goToGolfers(groupId: number): void {
@@ -125,7 +128,6 @@ export class GroupComponent implements OnInit, OnDestroy {
         this.group.SponsorPhone,
         [
           Validators.required,
-          //Validators.pattern('^[0-9]'),
           Validators.minLength(12),
           Validators.maxLength(12),
         ],
@@ -150,7 +152,6 @@ export class GroupComponent implements OnInit, OnDestroy {
         this.group.SponsorPhone,
         [
           Validators.required,
-          //Validators.pattern('^[0-9]'),
           Validators.minLength(12),
           Validators.maxLength(12),
         ],
@@ -167,7 +168,6 @@ export class GroupComponent implements OnInit, OnDestroy {
   }
 
   saveEditForm() {
-    alert(this.group.SponsorPhone.length);
     this.group.GroupName = this.groupForm.value.GroupName;
     this.group.SponsorName = this.groupForm.value.SponsorName;
     this.group.SponsorPhone = this.groupForm.value.SponsorPhone;
@@ -177,15 +177,22 @@ export class GroupComponent implements OnInit, OnDestroy {
     this.subscription = this.groupService.updateGroup(this.group).subscribe({
       next: (res: any) => {
         console.log(this.groups);
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Group Updated',
+        });
       },
       error: (err) => {
         this.errorMessage = err;
         console.log((this.errorMessage = err.message));
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error Updating Group',
+          detail: this.errorMessage,
+        });
       },
       complete: () => {
-        console.log(`called updateGroup()`);
-        this.setGroups(this.eventId);
-        alert('saved');
+        this.backToGroups();
       },
     });
   }
@@ -201,15 +208,30 @@ export class GroupComponent implements OnInit, OnDestroy {
     this.subscription = this.groupService.addGroup(this.group).subscribe({
       next: (res: any) => {
         console.log(this.groups);
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Group Added',
+        });
       },
       error: (err) => {
         this.errorMessage = err;
-        console.log((this.errorMessage = err.message));
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error Adding Group',
+          detail: this.errorMessage,
+        });
       },
       complete: () => {
-        console.log(`called addGroup()`);
-        this.setGroups(this.eventId);
-        alert('added');
+        this.backToGroups();
+      },
+    });
+  }
+
+  confirmDelete(groupId: number, groupName: string) {
+    this.confirmationService.confirm({
+      message: `Are you sure that you want to delete this group: ${groupName}?`,
+      accept: () => {
+        this.deleteGroup(groupId);
       },
     });
   }
@@ -218,10 +240,19 @@ export class GroupComponent implements OnInit, OnDestroy {
     this.subscription = this.groupService.deleteGroup(groupId).subscribe({
       next: (res: any) => {
         console.log(this.groups);
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Golfer Deleted',
+        });
       },
       error: (err) => {
         this.errorMessage = err;
         console.log((this.errorMessage = err.message));
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error Deleting Group',
+          detail: this.errorMessage,
+        });
       },
       complete: () => {
         console.log(`called deleteGroup()`);
@@ -240,6 +271,13 @@ export class GroupComponent implements OnInit, OnDestroy {
 
   viewAll() {
     this.groups = this.allGroups;
+  }
+
+  isInputError(field: string): boolean {
+    return (
+      !this.groupForm.controls[field].valid &&
+      this.groupForm.controls[field].touched
+    );
   }
 
   ngOnDestroy(): void {
