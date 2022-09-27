@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Group } from '../models/group';
-import { Member } from '../models/member';
+import { Group } from '../models/group.model';
+import { Member } from '../models/member.model';
 
 @Injectable({
   providedIn: 'root',

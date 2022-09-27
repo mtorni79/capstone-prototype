@@ -1,0 +1,34 @@
+<section class="error-message" *ngIf="errorMessage">
+  {{ errorMessage }}
+</section>
+
+<p-panel>
+  <ng-template pTemplate="header">
+    Login
+  </ng-template>
+  <form [formGroup]="registerForm" novalidate>
+    <div class="field">
+      <label for="username" class="block">Username</label>
+      <input id="username" type="text" formControlName="username"
+        [ngClass]="{'form-input' : true, 'form-input-error' : isInputError('username')}">
+      <small class="form-error block"
+        *ngIf="!registerForm.controls['username'].valid && registerForm.controls['username'].touched">Please enter a
+        valid username.</small>
+    </div>
+    <div class="field">
+      <label for="password" class="block">Password</label>
+      <input id="password" type="password" formControlName="password"
+        [ngClass]="{'form-input' : true, 'form-input-error' : isInputError('password')}">
+      <small class="form-error block"
+        *ngIf="!registerForm.controls['password'].valid && registerForm.controls['password'].touched">Please enter a
+        valid password.</small>
+    </div>
+  </form>
+  <ng-template pTemplate="footer">
+    <div class="flex justify-content-center flex-wrap gap-2">
+      <div class="flex flex align-items-center justify-content-center">
+        <button pButton type="button" label="Login" (click)="login()"></button>
+      </div>
+    </div>
+  </ng-template>
+</p-panel>

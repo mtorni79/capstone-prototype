@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Group } from '../models/group';
-import { Member } from '../models/member';
+import { Group } from '../models/group.model';
+import { Member } from '../models/member.model';
 import { GolferService } from '../services/golfer.service';
 import { MessageService } from 'primeng/api';
 

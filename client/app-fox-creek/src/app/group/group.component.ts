@@ -8,7 +8,7 @@ import {
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Group } from '../models/group';
+import { Group } from '../models/group.model';
 import { GroupService } from '../services/group.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
 

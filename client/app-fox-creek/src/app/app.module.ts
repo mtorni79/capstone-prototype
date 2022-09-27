@@ -25,6 +25,8 @@ import { GroupService } from './services/group.service';
 import { GolferService } from './services/golfer.service';
 import { GolferComponent } from './golfer/golfer.component';
 import { PanelModule } from 'primeng/panel';
+import { RegisterComponent } from './register/register.component';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,7 @@ import { PanelModule } from 'primeng/panel';
     GroupComponent,
     EventComponent,
     GolferComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,6 +58,7 @@ import { PanelModule } from 'primeng/panel';
     EventService,
     GroupService,
     GolferService,
+    UserService,
     MessageService,
     ConfirmationService,
   ],
