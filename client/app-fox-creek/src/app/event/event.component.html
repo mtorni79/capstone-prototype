@@ -41,7 +41,7 @@
       <td>{{event.OrganizationName}}</td>
       <td>{{event.Description}}</td>
       <td style="text-align: center">
-        <button pButton type="button" label="Groups" (click)="goToGroups(event.OrganizationId)"></button>
+        <button pButton type="button" label="Groups" (click)="goToGroups(event.OrganizationId, event.OrganizationName)"></button>
       </td>
     </tr>
   </ng-template>

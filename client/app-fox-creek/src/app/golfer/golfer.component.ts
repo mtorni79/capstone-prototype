@@ -150,8 +150,7 @@ export class GolferComponent implements OnInit {
       .updateGolfer(this.group.GroupId, this.golfer)
       .subscribe({
         next: (res: any) => {
-          this.golfer = res;
-          this.messageService.add({severity:'success', summary:'Golfer Updated', detail:`Golfer Updated With Id: ${this.golfer.MemberId}`});
+          this.messageService.add({severity:'success', summary:'Golfer Updated'});
         },
         error: (err) => {
           this.errorMessage = err;
@@ -169,8 +168,7 @@ export class GolferComponent implements OnInit {
       .addGolfer(this.group.GroupId, this.golfer)
       .subscribe({
         next: (res: any) => {
-          this.golfer = res;
-          this.messageService.add({severity:'success', summary:'Golfer Added', detail:`Golfer Added With Id: ${this.golfer.MemberId}`});
+          this.messageService.add({severity:'success', summary:'Golfer Added'});
         },
         error: (err) => {
           this.errorMessage = err;

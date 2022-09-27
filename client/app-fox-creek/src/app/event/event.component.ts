@@ -38,10 +38,10 @@ export class EventComponent implements OnInit, OnDestroy {
     });
   }
 
-  goToGroups(eventId: string): void {
+  goToGroups(eventId: string, eventName: string): void {
     this.router.navigate(['groups'], {
       relativeTo: this.route,
-      queryParams: { eventId: `${eventId}` },
+      queryParams: { eventId: `${eventId}`, eventName: `${eventName}` },
     });
   }
 

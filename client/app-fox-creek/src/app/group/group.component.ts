@@ -47,6 +47,7 @@ export class GroupComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
       this.eventId = params['eventId'];
+      this.eventName = params['eventName'];
       this.setGroups(this.eventId);
     });
   }
@@ -66,7 +67,6 @@ export class GroupComponent implements OnInit, OnDestroy {
         },
         complete: () => {
           console.log(`called getGroupsByEventId()`);
-          this.eventName = this.groups[0].OrganizationName;
         },
       });
   }
