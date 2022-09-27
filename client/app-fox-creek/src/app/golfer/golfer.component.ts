@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Group } from '../models/group';
 import { Member } from '../models/member';
 import { GolferService } from '../services/golfer.service';
-import { Location } from '@angular/common';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'fc-golfer',
@@ -13,6 +13,8 @@ import { Location } from '@angular/common';
   styleUrls: ['./golfer.component.css'],
 })
 export class GolferComponent implements OnInit {
+  eventId!: string;
+
   group!: Group;
   groupName!: string;
   golfers!: Array<Member>;
@@ -32,11 +34,12 @@ export class GolferComponent implements OnInit {
     private route: ActivatedRoute,
     private golferService: GolferService,
     private fb: FormBuilder,
-    private location: Location
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
+      this.eventId = params['eventId'];
       this.setGroup(params['groupId']);
     });
   }
@@ -78,22 +81,22 @@ export class GolferComponent implements OnInit {
   deleteGolfer(golferId: number): void {
     alert('delete: ' + golferId);
     this.subscription = this.golferService
-    .deleteGolfer(this.group.GroupId, golferId)
-    .subscribe({
-      next: (res: any) => {
-        this.golfer = res;
-        console.log('deleteGolfer: ' + this.golfer);
-      },
-      error: (err) => {
-        this.errorMessage = err;
-        console.log((this.errorMessage = err.message));
-      },
-      complete: () => {
-        console.log(`called deleteGolfer()`);
-        this.setGroup(this.group.GroupId);
-        alert('deleted');
-      },
-    });
+      .deleteGolfer(this.group.GroupId, golferId)
+      .subscribe({
+        next: (res: any) => {
+          this.golfer = res;
+          console.log('deleteGolfer: ' + this.golfer);
+        },
+        error: (err) => {
+          this.errorMessage = err;
+          console.log((this.errorMessage = err.message));
+        },
+        complete: () => {
+          console.log(`called deleteGolfer()`);
+          this.setGroup(this.group.GroupId);
+          alert('deleted');
+        },
+      });
   }
 
   backToGolfers(): void {
@@ -102,7 +105,10 @@ export class GolferComponent implements OnInit {
   }
 
   backToGroups(): void {
-    this.location.back();
+    this.router.navigate(['../groups'], {
+      relativeTo: this.route,
+      queryParams: { eventId: `${this.eventId}` },
+    });
   }
 
   createForm(): void {
@@ -145,16 +151,15 @@ export class GolferComponent implements OnInit {
       .subscribe({
         next: (res: any) => {
           this.golfer = res;
-          console.log('updateGolfer: ' + this.golfer);
+          this.messageService.add({severity:'success', summary:'Golfer Updated', detail:`Golfer Updated With Id: ${this.golfer.MemberId}`});
         },
         error: (err) => {
           this.errorMessage = err;
-          console.log((this.errorMessage = err.message));
+          this.messageService.add({severity:'error', summary:'Error While Updating Golfer'});
         },
         complete: () => {
           console.log(`called updateGolfer()`);
           this.setGroup(this.group.GroupId);
-          alert('saved');
         },
       });
   }
@@ -165,16 +170,14 @@ export class GolferComponent implements OnInit {
       .subscribe({
         next: (res: any) => {
           this.golfer = res;
-          console.log('addedGolfer: ' + this.golfer);
+          this.messageService.add({severity:'success', summary:'Golfer Added', detail:`Golfer Added With Id: ${this.golfer.MemberId}`});
         },
         error: (err) => {
           this.errorMessage = err;
-          console.log((this.errorMessage = err.message));
+          this.messageService.add({severity:'error', summary:'Error While Adding Golfer'});
         },
         complete: () => {
-          console.log(`called addGolfer()`);
           this.setGroup(this.group.GroupId);
-          alert('saved');
         },
       });
   }

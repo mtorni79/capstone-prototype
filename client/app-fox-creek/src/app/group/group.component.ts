@@ -113,7 +113,7 @@ export class GroupComponent implements OnInit, OnDestroy {
   goToGolfers(groupId: number): void {
     this.router.navigate(['../golfers'], {
       relativeTo: this.route,
-      queryParams: { groupId: `${groupId}` },
+      queryParams: { groupId: `${groupId}`, eventId: `${this.eventId}` },
     });
   }
 
