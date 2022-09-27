@@ -69,25 +69,45 @@
 
 <section *ngIf="showDetails">
   <div *ngIf="!isEditMode && !isAddMode">
-    <p-panel [toggleable]="true">
+    <p-panel>
       <ng-template pTemplate="header">
-        Header content here
+        <div class="flex justify-content-between flex-wrap" style="width:100%">
+          <div class="flex align-items-center justify-content-center">
+            <h2>Details for {{group.GroupName}}</h2>
+          </div>
+          <div class="flex align-items-center justify-content-center">
+            <button pButton type="button" label="Back" (click)="backToGroups()"></button>
+          </div>
+        </div>
       </ng-template>
-      Body Content
-      <ng-template pTemplate="footer">
-        Footer content here
-      </ng-template>
+      <h3>Group Name:</h3> {{group.GroupName}}
+      <h3>Organization Name</h3> {{group.OrganizationName}}
+      <h3>Spronsor Name</h3> {{group.SponsorName}}
+      <h3>Sponsor Phone</h3> {{group.SponsorPhone}}
+      <h3>Sponsor Email</h3> {{group.SponsorEmail}}
+      <h3>MaxGroup Size</h3> {{group.MaxGroupSize}}
+      <br /><br /><br />
+
+      <p-table [value]="group.Members" styleClass="p-datatable-gridlines" responsiveLayout="scroll">
+        <ng-template pTemplate="caption">
+          Golfers
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-golfer>
+          <tr>
+            <td>{{golfer.MemberName}}</td>
+            <td>{{golfer.MemberEmail}}</td>
+            <td>{{golfer.MemberPhone}}</td>
+          </tr>
+        </ng-template>
+      </p-table>
     </p-panel>
-    <!--
-    show the form <button pButton type="button" label="Back To Groups" (click)="backToGroups()"></button><br />
-    GroupId: {{group.GroupId}} <br />
-    GroupName: {{group.GroupName}} <br />
-    OrganizationName: {{group.OrganizationName}} <br />
-    SpronsorName: {{group.SponsorName}} <br />
-    SponsorPhone: {{group.SponsorPhone}} <br />
-    SponsorEmail: {{group.SponsorEmail}} <br />
-    MaxGroupSize: {{group.MaxGroupSize}} <br />
-    -->
   </div>
 
 
