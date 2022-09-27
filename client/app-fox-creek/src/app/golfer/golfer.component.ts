@@ -69,12 +69,31 @@ export class GolferComponent implements OnInit {
     this.isEditMode = true;
   }
 
-  goToAddMode(golferId: number): void {
-    alert('delete: ' + golferId);
+  goToAddMode(): void {
+    this.golfer = new Member();
+    this.createForm();
+    this.isAddMode = true;
   }
 
   deleteGolfer(golferId: number): void {
     alert('delete: ' + golferId);
+    this.subscription = this.golferService
+    .deleteGolfer(this.group.GroupId, golferId)
+    .subscribe({
+      next: (res: any) => {
+        this.golfer = res;
+        console.log('deleteGolfer: ' + this.golfer);
+      },
+      error: (err) => {
+        this.errorMessage = err;
+        console.log((this.errorMessage = err.message));
+      },
+      complete: () => {
+        console.log(`called deleteGolfer()`);
+        this.setGroup(this.group.GroupId);
+        alert('deleted');
+      },
+    });
   }
 
   backToGolfers(): void {
@@ -105,7 +124,60 @@ export class GolferComponent implements OnInit {
     });
   }
 
-  saveEditForm(golferId: number): void {}
+  saveForm(isAddMode: boolean): void {
+    this.golfer.MemberName = this.golferForm.value.MemberName;
+    this.golfer.MemberEmail = this.golferForm.value.MemberEmail;
+    this.golfer.MemberPhone = this.golferForm.value.MemberPhone;
+
+    if (!isAddMode) {
+      this.updateGolfer();
+    } else {
+      this.addGolfer();
+    }
+
+    this.isEditMode = false;
+    this.isAddMode = false;
+  }
+
+  updateGolfer() {
+    this.subscription = this.golferService
+      .updateGolfer(this.group.GroupId, this.golfer)
+      .subscribe({
+        next: (res: any) => {
+          this.golfer = res;
+          console.log('updateGolfer: ' + this.golfer);
+        },
+        error: (err) => {
+          this.errorMessage = err;
+          console.log((this.errorMessage = err.message));
+        },
+        complete: () => {
+          console.log(`called updateGolfer()`);
+          this.setGroup(this.group.GroupId);
+          alert('saved');
+        },
+      });
+  }
+
+  addGolfer() {
+    this.subscription = this.golferService
+      .addGolfer(this.group.GroupId, this.golfer)
+      .subscribe({
+        next: (res: any) => {
+          this.golfer = res;
+          console.log('addedGolfer: ' + this.golfer);
+        },
+        error: (err) => {
+          this.errorMessage = err;
+          console.log((this.errorMessage = err.message));
+        },
+        complete: () => {
+          console.log(`called addGolfer()`);
+          this.setGroup(this.group.GroupId);
+          alert('saved');
+        },
+      });
+  }
 
   isInputError(field: string): boolean {
     return (

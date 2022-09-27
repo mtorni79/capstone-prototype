@@ -1,8 +1,9 @@
-<div id="golferWrapper" *ngIf="!isLoading">
+<section class="error-message" *ngIf="errorMessage">
+  {{ errorMessage | json }}
+</section>
 
-  <section class="error-message" *ngIf="errorMessage">
-    {{ errorMessage | json }}
-  </section>
+
+<div id="golferWrapper" *ngIf="!isLoading && !errorMessage">
 
   <p-panel styleClass="header-panel">
     <ng-template pTemplate="header">
@@ -16,12 +17,21 @@
   </p-panel>
 
   <p-table [value]="golfers" styleClass="p-datatable-gridlines" responsiveLayout="scroll"
-    *ngIf="!errorMessage && !isEditMode && !isAddMode">
+    *ngIf="!isEditMode && !isAddMode">
+    <ng-template pTemplate="caption">
+      <div class="card">
+        <div class="flex justify-content-end flex-wrap gap-5">
+          <div class="flex flex align-items-center justify-content-center">
+            <button pButton type="button" label="Add Golfer" (click)="goToAddMode()"></button>
+          </div>
+        </div>
+      </div>
+    </ng-template>
     <ng-template pTemplate="header">
       <tr>
-        <th style="text-align: center">Golfer Name</th>
-        <th style="text-align: center">Golfer Email</th>
-        <th style="text-align: center">Golfer Phone Number</th>
+        <th style="text-align: center">Golfer's Name</th>
+        <th style="text-align: center">Golfer's Email</th>
+        <th style="text-align: center">Golfer's Phone Number</th>
         <th style="text-align: center">Actions</th>
       </tr>
     </ng-template>
@@ -82,8 +92,9 @@
         <div class="flex flex align-items-center justify-content-center">
           <button pButton type="button" label="Back" (click)="backToGolfers()"></button>
         </div>
-        <div class="flex flex align-items-center justify-content-center" *ngIf="golferForm.status === 'VALID'">
-          <button pButton type="button" label="Save" (click)="saveEditForm(golfer.MemberId)"></button>
+        <div class="flex flex align-items-center justify-content-center">
+          <button pButton type="button" label="Save" (click)="saveForm(false)" *ngIf="isEditMode && golferForm.status === 'VALID'"></button>
+          <button pButton type="button" label="Save" (click)="saveForm(true)" *ngIf="isAddMode && golferForm.status === 'VALID'"></button>
         </div>
       </div>
     </ng-template>
