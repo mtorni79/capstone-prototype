@@ -13,6 +13,7 @@ import { MessageService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 import { DialogModule } from 'primeng/dialog';
+import { SliderModule } from 'primeng/slider';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -53,6 +54,7 @@ import { UserService } from './services/user.service';
     PanelModule,
     ConfirmDialogModule,
     DialogModule,
+    SliderModule,
   ],
   providers: [
     EventService,

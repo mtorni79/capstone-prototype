@@ -16,13 +16,20 @@
     </div>
   </section>
 
+
+
   <p-table [value]="golfers" styleClass="p-datatable-gridlines" responsiveLayout="scroll"
     *ngIf="!isEditMode && !isAddMode">
     <ng-template pTemplate="caption">
       <div class="card">
         <div class="flex justify-content-end flex-wrap gap-5">
           <div class="flex flex align-items-center justify-content-center">
-            <button pButton type="button" label="Add Golfer" (click)="goToAddMode()"></button>
+            <meter value="{{groupSize}}" max="{{maxGroupSize}}"></meter>
+            {{groupSize}}/{{maxGroupSize}}
+          </div>
+          <div class="flex flex align-items-center justify-content-center">
+            <button pButton type="button" label="Add Golfer" (click)="goToAddMode()"
+              *ngIf="groupSize < maxGroupSize"></button>
           </div>
         </div>
       </div>
@@ -47,7 +54,8 @@
                 <button pButton type="button" label="Edit" (click)="goToEditMode(golfer.MemberId)"></button>
               </div>
               <div class="flex flex align-items-center justify-content-center">
-                <button pButton type="button" label="Delete" (click)="deleteGolfer(golfer.MemberId)"></button>
+                <button pButton type="button" label="Delete"
+                  (click)="confirmDelete(golfer.MemberId, golfer.MemberName)"></button>
               </div>
             </div>
           </div>

@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { Group } from '../models/group.model';
 import { Member } from '../models/member.model';
 import { GolferService } from '../services/golfer.service';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'fc-golfer',
@@ -14,6 +14,7 @@ import { MessageService } from 'primeng/api';
 })
 export class GolferComponent implements OnInit {
   eventId!: string;
+  eventName!: string;
 
   group!: Group;
   groupName!: string;
@@ -29,17 +30,22 @@ export class GolferComponent implements OnInit {
   errorMessage!: string;
   isLoading: boolean = false;
 
+  groupSize!: number;
+  maxGroupSize!: number;
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private golferService: GolferService,
     private fb: FormBuilder,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService
   ) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
       this.eventId = params['eventId'];
+      this.eventName = params['eventName'];
       this.setGroup(params['groupId']);
     });
   }
@@ -50,6 +56,8 @@ export class GolferComponent implements OnInit {
         this.group = res;
         this.groupName = this.group.GroupName;
         this.golfers = res.Members;
+        this.maxGroupSize = this.group.MaxGroupSize;
+        this.groupSize = this.group.Members.length;
         console.log(this.golfers);
       },
       error: (err) => {
@@ -78,8 +86,16 @@ export class GolferComponent implements OnInit {
     this.isAddMode = true;
   }
 
+  confirmDelete(golferId: number, golferName: string) {
+    this.confirmationService.confirm({
+      message: `Are you sure that you want to delete this golfer: ${golferName}?`,
+      accept: () => {
+        this.deleteGolfer(golferId);
+      },
+    });
+  }
+
   deleteGolfer(golferId: number): void {
-    alert('delete: ' + golferId);
     this.subscription = this.golferService
       .deleteGolfer(this.group.GroupId, golferId)
       .subscribe({
@@ -94,7 +110,6 @@ export class GolferComponent implements OnInit {
         complete: () => {
           console.log(`called deleteGolfer()`);
           this.setGroup(this.group.GroupId);
-          alert('deleted');
         },
       });
   }
@@ -107,7 +122,7 @@ export class GolferComponent implements OnInit {
   backToGroups(): void {
     this.router.navigate(['../groups'], {
       relativeTo: this.route,
-      queryParams: { eventId: `${this.eventId}` },
+      queryParams: { eventId: `${this.eventId}`, eventName: `${this.eventName}` },
     });
   }
 

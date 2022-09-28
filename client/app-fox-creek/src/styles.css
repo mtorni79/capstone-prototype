@@ -43,8 +43,6 @@ h3 {
   color: red;
 }
 
-
-
 .form-input{
   width: 100%;
   padding: 12px 20px;
@@ -58,7 +56,11 @@ h3 {
   border: 1px solid red;
 }
 
-
 .form-error {
   color: red;
+}
+
+meter {
+  width: 200px;
+  height: 25px;
 }
