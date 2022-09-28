@@ -12,13 +12,13 @@ footer {
 
 @media (max-width: 1000px) {
   footer {
-      display: none;
+    display: none;
   }
 }
 
 
 small {
-  font-size: 10px;
+  font-size: 12px;
   text-align: center;
 }
 
@@ -35,6 +35,11 @@ small {
   padding-right: 5px;
   padding-left: 5px;
   border-right: 1px solid var(--main-brown-color);
+}
+
+#footerNav ul li a {
+  color: whitesmoke;
+  text-decoration: none;
 }
 
 #footerNav ul li:last-child {

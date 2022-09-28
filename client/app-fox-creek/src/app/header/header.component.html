@@ -1,11 +1,14 @@
 <header class="header-footer">
   <nav>
-    <button type="button" class="btn" onclick="window.location.href='https://www.w3docs.com';">Home</button>
-    <button type="button" class="btn" onclick="window.location.href='https://www.w3docs.com';">Home</button>
-    <button type="button" class="btn" onclick="window.location.href='https://www.w3docs.com';">Home</button>
+    <button pButton type="button" label="Home" (click)="navigateTo('')"
+      [style]="{'background-color':'var(--main-brown-color)', 'color': '#ffffff'}"></button>
+    <button pButton type="button" label="Sponsors" (click)="navigateTo('sponsors')"
+      [style]="{'background-color':'var(--main-brown-color)', 'color': '#ffffff'}"></button>
+    <button pButton type="button" label="Register" (click)="navigateTo('register')"
+      [style]="{'background-color':'var(--main-brown-color)', 'color': '#ffffff'}"></button>
   </nav>
   <h1>Fox Creek Golf Course</h1>
-  <p-dialog header="User Information" position="top-right"  [(visible)]="displayDialog" [style]="{width: '50vw'}">
+  <p-dialog header="User Information" position="top-right" [(visible)]="displayDialog" [style]="{width: '50vw'}">
     {{ dialogContent }}
   </p-dialog>
   <button pButton type="button" icon="pi pi-user" class="p-button-rounded p-button-lg"

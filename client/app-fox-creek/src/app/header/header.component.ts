@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { User } from '../models/user.model';
 import { UserService } from '../services/user.service';
 
@@ -12,17 +13,25 @@ export class HeaderComponent implements OnInit {
   displayDialog!: boolean;
   dialogContent!: string;
 
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
 
+  navigateTo(ref: string): void {
+    this.router.navigate([ref], {
+      relativeTo: this.route,
+    });
   }
 
   showDialog(): void {
     this.currentUser = this.userService.getUser();
-    if(this.currentUser.isRegistered) {
+    if (this.currentUser.isRegistered) {
       this.dialogContent = `Welcome ${this.currentUser.name} admin status ${this.currentUser.isAdmin}`;
-    } else{
+    } else {
       this.dialogContent = `Welcome public!`;
     }
     this.displayDialog = true;

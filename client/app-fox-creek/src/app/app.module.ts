@@ -28,6 +28,7 @@ import { GolferComponent } from './golfer/golfer.component';
 import { PanelModule } from 'primeng/panel';
 import { RegisterComponent } from './register/register.component';
 import { UserService } from './services/user.service';
+import { SponsorComponent } from './sponsor/sponsor.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { UserService } from './services/user.service';
     EventComponent,
     GolferComponent,
     RegisterComponent,
+    SponsorComponent,
   ],
   imports: [
     BrowserModule,

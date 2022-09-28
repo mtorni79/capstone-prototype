@@ -5,6 +5,7 @@ import { EventComponent } from './event/event.component';
 import { GolferComponent } from './golfer/golfer.component';
 import { RegisterComponent } from './register/register.component';
 import { RegisterGuardService } from './services/register-guard.service';
+import { SponsorComponent } from './sponsor/sponsor.component';
 
 class AllowFullAccessGuard implements CanActivate {
   canActivate(): boolean {
@@ -16,6 +17,7 @@ class AllowFullAccessGuard implements CanActivate {
 const fallbackRoute: Route = {
   path: '**',
   component: EventComponent,
+  canActivate: [AllowFullAccessGuard, RegisterGuardService],
 };
 
 const routes: Routes = [
@@ -24,7 +26,16 @@ const routes: Routes = [
     component: GroupComponent,
     canActivate: [AllowFullAccessGuard, RegisterGuardService],
   },
-  { path: 'golfers', component: GolferComponent },
+  {
+    path: 'golfers',
+    component: GolferComponent,
+    canActivate: [AllowFullAccessGuard, RegisterGuardService],
+  },
+  {
+    path: 'sponsors',
+    component: SponsorComponent,
+    canActivate: [AllowFullAccessGuard, RegisterGuardService],
+  },
   { path: 'register', component: RegisterComponent },
   fallbackRoute,
 ];
