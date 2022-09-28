@@ -1,0 +1,574 @@
+{
+	"info": {
+		"_postman_id": "d79baf6b-04b6-404b-9f12-da41df623d25",
+		"name": "JB Hunt Capstone",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2580996"
+	},
+	"item": [
+		{
+			"name": "GET requests",
+			"item": [
+				{
+					"name": "Negative GET requests",
+					"item": [
+						{
+							"name": "GET one GROUP by ID bad request",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8082/api/groups/222222",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8082",
+									"path": [
+										"api",
+										"groups",
+										"222222"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET many GROUPs by ORGANIZATION bad request",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8082/api/groups/byorganization/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"api",
+										"groups",
+										"byorganization",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "org1234"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "GET ORGANIZATIONS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/organizations",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"organizations"
+							]
+						},
+						"description": "Returns all organizations"
+					},
+					"response": [
+						{
+							"name": "GET ORGANIZATIONS",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8082/api/organizations",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"api",
+										"organizations"
+									]
+								}
+							},
+							"_postman_previewlanguage": "JSON",
+							"header": [],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "GET ORGANIZATIONS",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8082/api/organizations",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"api",
+										"organizations"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "JSON",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Origin, X-Requested-With, Content-Type, Accept"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "PUT, POST, GET, DELETE, OPTIONS"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 19 Jun 2022 21:44:46 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								},
+								{
+									"key": "Content-Length",
+									"value": "416"
+								}
+							],
+							"cookie": [],
+							"body": "[{\"OrganizationName\":\"Organization One\",\"OrganizationId\":\"Org1\",\"Description\":\"This is organization 1\"},{\"OrganizationName\":\"Organization Two\",\"OrganizationId\":\"Org2\",\"Description\":\"This is organization 2\"},{\"OrganizationName\":\"Organization Three\",\"OrganizationId\":\"Org3\",\"Description\":\"This is organization 3\"},{\"OrganizationName\":\"Organization Four\",\"OrganizationId\":\"Org4\",\"Description\":\"This is organization 4\"}]"
+						}
+					]
+				},
+				{
+					"name": "GET GROUPS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8082/api/groups",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"groups"
+							]
+						},
+						"description": "Get all groups"
+					},
+					"response": []
+				},
+				{
+					"name": "GET one GROUP by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8082/api/groups/:id",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"groups",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET many GROUPs by ORGANIZATION",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8082/api/groups/byorganization/:id",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"groups",
+								"byorganization",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "Org1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET a specific MEMBER in a specific GROUP",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8082/api/groups/2/members/5",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"groups",
+								"2",
+								"members",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "POST requests",
+			"item": [
+				{
+					"name": "ADD a GROUP",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "GroupName",
+									"value": "testgroup",
+									"type": "text"
+								},
+								{
+									"key": "OrganizationName",
+									"value": "Organization One",
+									"type": "text"
+								},
+								{
+									"key": "SponsorName",
+									"value": "Kevin Ruse",
+									"type": "text"
+								},
+								{
+									"key": "SponsorEmail",
+									"value": "kevin@kevin.com",
+									"type": "text"
+								},
+								{
+									"key": "MaxGroupSize",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "SponsorPhone",
+									"value": "555-5555",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8082/api/groups/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"groups",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ADD a MEMBER to a GROUP",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "MemberEmail",
+									"value": "you@you.com",
+									"type": "text"
+								},
+								{
+									"key": "MemberName",
+									"value": "Linda Ruse",
+									"type": "text"
+								},
+								{
+									"key": "MemberPhone",
+									"value": "555-5555",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8082/api/groups/14/members",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"groups",
+								"14",
+								"members"
+							]
+						},
+						"description": "Add a member to a group."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PUT request",
+			"item": [
+				{
+					"name": "EDIT a GROUP",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "GroupId",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "GroupName",
+									"value": "United Front",
+									"type": "text"
+								},
+								{
+									"key": "OrganizationName",
+									"value": "Organization One",
+									"type": "text"
+								},
+								{
+									"key": "SponsorName",
+									"value": "Kevin",
+									"type": "text"
+								},
+								{
+									"key": "SponsorEmail",
+									"value": "kevin@kevin.com",
+									"type": "text"
+								},
+								{
+									"key": "MaxGroupSize",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "SponsorPhone",
+									"value": "123-1234555-",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8082/api/groups",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"groups"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EDIT a MEMBER in a GROUP",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "MemberId",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "MemberEmail",
+									"value": "editedMember@me.com",
+									"type": "text"
+								},
+								{
+									"key": "MemberName",
+									"value": "EditedMemberName Linda",
+									"type": "text"
+								},
+								{
+									"key": "MemberPhone",
+									"value": "987-6543",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8082/api/groups/1/members",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"groups",
+								"1",
+								"members"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "DELETE request",
+			"item": [
+				{
+					"name": "DELETE a GROUP",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8082/api/groups/4",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"groups",
+								"4"
+							]
+						},
+						"description": "Delete a group by ID"
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE a MEMBER in a GROUP",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8082/api/groups/1/members/4",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"groups",
+								"1",
+								"members",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

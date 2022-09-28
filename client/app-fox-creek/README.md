@@ -1,10 +1,31 @@
 # AppFoxCreek
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.3.
+This project is ment to register golfers and groups for certain high profile events thoughout the year.  
+It is a pure admin site for internal use for now we will reavalute public access at a later time.
+
+## Tools Used
+
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.3.  
+To run this project you will need npm and angular cli
+
+## Data server
+
+Change into the server directory the run `npm start`
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Run `npm install` and then `npm start` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+
+## Endpoints used in the app can be found in the `api_test` directory.
+
+## Main feature
+
+View, edit, create and delete groups for an event. View edit, create and delete golfers from a group.
+
+## Login
+Admin: admin/123  
+User:  user/123
+
 
 ## Code scaffolding
 
