@@ -5,5 +5,9 @@
     <button type="button" class="btn" onclick="window.location.href='https://www.w3docs.com';">Home</button>
   </nav>
   <h1>Fox Creek Golf Course</h1>
-  <img width="50px" height="50px" alt="Member Icon" src="https://via.placeholder.com/50" />
+  <p-dialog header="User Information" position="top-right"  [(visible)]="displayDialog" [style]="{width: '50vw'}">
+    {{ dialogContent }}
+  </p-dialog>
+  <button pButton type="button" icon="pi pi-user" class="p-button-rounded p-button-lg"
+    [style]="{'background-color':'var(--main-brown-color)', 'color': '#ffffff'}" (click)="showDialog()"></button>
 </header>

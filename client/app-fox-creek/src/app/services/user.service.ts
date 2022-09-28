@@ -2,18 +2,18 @@ import { Injectable } from '@angular/core';
 import { User } from '../models/user.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
   private user: User;
 
-
   constructor() {
     this.user = new User();
     this.user.isAdmin = false;
-   }
+    this.user.isRegistered = false;
+  }
 
-   getUser(): User {
+  getUser(): User {
     if (localStorage.getItem('currentUser')) {
       this.user = JSON.parse(localStorage.getItem('currentUser')!);
       return this.user;
@@ -22,9 +22,7 @@ export class UserService {
     }
   }
 
-
   static storeUserLocal(user: User) {
     localStorage.setItem('currentUser', JSON.stringify(user));
   }
-
 }

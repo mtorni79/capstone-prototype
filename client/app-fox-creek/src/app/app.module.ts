@@ -12,7 +12,7 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
-import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { DialogModule } from 'primeng/dialog';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -52,7 +52,7 @@ import { UserService } from './services/user.service';
     ReactiveFormsModule,
     PanelModule,
     ConfirmDialogModule,
-    OverlayPanelModule,
+    DialogModule,
   ],
   providers: [
     EventService,
