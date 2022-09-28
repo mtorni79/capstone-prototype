@@ -1,1 +1,28 @@
-<p>sponsor works!</p>
+<div id="sponsorWrapper">
+
+  <section class="error-message" *ngIf="errorMessage">
+    {{ errorMessage | json }}
+  </section>
+
+
+  <p-table [value]="groups" styleClass="p-datatable-gridlines" responsiveLayout="scroll" *ngIf="!isLoading">
+    <ng-template pTemplate="caption">
+      <h1>Sponsors</h1>
+    </ng-template>
+
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="text-align: center">Sponsor Name</th>
+        <th style="text-align: center">Sponsor Phone</th>
+        <th style="text-align: center">Sponsor Email</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-group>
+      <tr>
+        <td>{{group.SponsorName}}</td>
+        <td>{{group.SponsorPhone}}</td>
+        <td>{{group.SponsorEmail}}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

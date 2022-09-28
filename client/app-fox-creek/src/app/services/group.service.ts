@@ -15,6 +15,14 @@ export class GroupService {
 
   constructor(private http: HttpClient) {}
 
+  getAllGroups(): Observable<Group> {
+    const results: Observable<Group> = this.http.get<Group>(
+      `${this.groupUrl}`
+    );
+    console.log(`getAllGroups returned ${results}`);
+    return results;
+  }
+
   getGroupsByEventId(eventId: string): Observable<Group> {
     const results: Observable<Group> = this.http.get<Group>(
       `${this.groupUrl}/byorganization/${eventId}`
