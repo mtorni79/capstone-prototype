@@ -11,6 +11,8 @@ import { Subscription } from 'rxjs';
 import { Group } from '../models/group.model';
 import { GroupService } from '../services/group.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { User } from '../models/user.model';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'fc-group',
@@ -19,6 +21,8 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 })
 export class GroupComponent implements OnInit, OnDestroy {
   @ViewChild('searchInput') searchInput!: ElementRef;
+
+  currentUser!: User;
 
   logo: string = './assets/images/logo.jpg';
   logoAlt: string = 'Fox Creek Logo';
@@ -44,7 +48,8 @@ export class GroupComponent implements OnInit, OnDestroy {
     private groupService: GroupService,
     private fb: FormBuilder,
     private messageService: MessageService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
@@ -53,6 +58,7 @@ export class GroupComponent implements OnInit, OnDestroy {
       this.eventName = params['eventName'];
       this.setGroups(this.eventId);
     });
+    this.currentUser = this.userService.getUser();
   }
 
   setGroups(eventId: string): void {
@@ -116,7 +122,11 @@ export class GroupComponent implements OnInit, OnDestroy {
   goToGolfers(groupId: number): void {
     this.router.navigate(['../golfers'], {
       relativeTo: this.route,
-      queryParams: { groupId: `${groupId}`, eventId: `${this.eventId}`, eventName: `${this.eventName}` },
+      queryParams: {
+        groupId: `${groupId}`,
+        eventId: `${this.eventId}`,
+        eventName: `${this.eventName}`,
+      },
     });
   }
 

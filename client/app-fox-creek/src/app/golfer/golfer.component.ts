@@ -6,6 +6,8 @@ import { Group } from '../models/group.model';
 import { Member } from '../models/member.model';
 import { GolferService } from '../services/golfer.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { User } from '../models/user.model';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'fc-golfer',
@@ -13,6 +15,8 @@ import { ConfirmationService, MessageService } from 'primeng/api';
   styleUrls: ['./golfer.component.css'],
 })
 export class GolferComponent implements OnInit {
+  currentUser!: User;
+
   eventId!: string;
   eventName!: string;
 
@@ -39,7 +43,8 @@ export class GolferComponent implements OnInit {
     private golferService: GolferService,
     private fb: FormBuilder,
     private messageService: MessageService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private userService: UserService,
   ) {}
 
   ngOnInit(): void {
@@ -48,6 +53,7 @@ export class GolferComponent implements OnInit {
       this.eventName = params['eventName'];
       this.setGroup(params['groupId']);
     });
+    this.currentUser = this.userService.getUser();
   }
 
   setGroup(groupId: number): void {

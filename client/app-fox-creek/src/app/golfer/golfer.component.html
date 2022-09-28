@@ -29,17 +29,17 @@
           </div>
           <div class="flex flex align-items-center justify-content-center">
             <button pButton type="button" label="Add Golfer" (click)="goToAddMode()"
-              *ngIf="groupSize < maxGroupSize"></button>
+              *ngIf="groupSize < maxGroupSize && currentUser.isAdmin"></button>
           </div>
         </div>
       </div>
     </ng-template>
     <ng-template pTemplate="header">
       <tr>
-        <th style="text-align: center">Golfer's Name</th>
-        <th style="text-align: center">Golfer's Email</th>
-        <th style="text-align: center">Golfer's Phone Number</th>
-        <th style="text-align: center">Actions</th>
+        <th style="text-align: center">Golfer Name</th>
+        <th style="text-align: center">Golfer Email</th>
+        <th style="text-align: center">Golfer Phone Number</th>
+        <th style="text-align: center" *ngIf="currentUser.isAdmin">Actions</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-golfer>
@@ -47,15 +47,15 @@
         <td>{{golfer.MemberName}}</td>
         <td>{{golfer.MemberEmail}}</td>
         <td>{{golfer.MemberPhone}}</td>
-        <td style="text-align: center">
+        <td style="text-align: center" *ngIf="currentUser.isAdmin">
           <div class="card">
             <div class="flex justify-content-center flex-wrap gap-2">
               <div class="flex flex align-items-center justify-content-center">
-                <button pButton type="button" label="Edit" (click)="goToEditMode(golfer.MemberId)"></button>
+                <button pButton type="button" label="Edit" (click)="goToEditMode(golfer.MemberId)" icon="pi pi-user-edit" class="p-button-help"></button>
               </div>
               <div class="flex flex align-items-center justify-content-center">
                 <button pButton type="button" label="Delete"
-                  (click)="confirmDelete(golfer.MemberId, golfer.MemberName)"></button>
+                  (click)="confirmDelete(golfer.MemberId, golfer.MemberName)" icon="pi pi-trash" class="p-button-danger"></button>
               </div>
             </div>
           </div>
