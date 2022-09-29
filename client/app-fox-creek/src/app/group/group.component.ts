@@ -274,7 +274,7 @@ export class GroupComponent implements OnInit, OnDestroy {
   search() {
     const searchValue = this.searchInput.nativeElement.value;
     this.groups = this.groups.filter((element) => {
-      return element.GroupName.includes(searchValue);
+      return element.GroupName.search(searchValue) != -1;
     });
   }
 
