@@ -1,3 +1,7 @@
+#eventWrapper {
+  padding-top: 20px;
+}
+
 #description {
   display: flex;
   flex-direction: row;

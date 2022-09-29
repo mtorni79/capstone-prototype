@@ -1,49 +1,51 @@
-<section id="description">
-  <figure>
-    <img [src]="logo" [alt]="logoAlt" width="200px" height="200px" />
-    <figcaption>Fox Creek Member of PGA &copy;</figcaption>
-  </figure>
-  <div>
-    <p>
-      Welcome to Fox Creek Golf course website. This site as of now is mostly for create events,
-      adding groups, and setting up golfer's.
-      This site was designed to help our Administration have a consistant way of doing what we have
-      been doing for years on paper.
-    </p>
-    <p>
-      We have big plans for this site in the near future. For example letting sponsors and golfer's a
-      like be more involed in our site. We would like to
-      be able to allow no admins to sign up for event as well as see how they did compared to other's
-      in past events.
-    </p>
-    <p>The possiblites are truely endless.
-      Maybe this could one day be the go to software system of all aspects golf for all golf courses.
-      Too ambishish maybe, but so was that shoot you took the other day
-      thinking you could make it over the water hazard.
-    </p>
-  </div>
-</section>
+<div id="eventWrapper">
+  <section id="description">
+    <figure>
+      <img [src]="logo" [alt]="logoAlt" width="200px" height="200px" />
+      <figcaption>Fox Creek Member of PGA &copy;</figcaption>
+    </figure>
+    <div>
+      <p>
+        Welcome to Fox Creek Golf course website. This site as of now is mostly for create events,
+        adding groups, and setting up golfer's.
+        This site was designed to help our Administration have a consistant way of doing what we have
+        been doing for years on paper.
+      </p>
+      <p>
+        We have big plans for this site in the near future. For example letting sponsors and golfer's a
+        like be more involed in our site. We would like to
+        be able to allow no admins to sign up for event as well as see how they did compared to other's
+        in past events.
+      </p>
+      <p>The possiblites are truely endless.
+        Maybe this could one day be the go to software system of all aspects golf for all golf courses.
+        Too ambishish maybe, but so was that shoot you took the other day
+        thinking you could make it over the water hazard.
+      </p>
+    </div>
+  </section>
 
-<section class="error-message" *ngIf="errorMessage">
-  {{ errorMessage | json }}
-</section>
+  <section class="error-message" *ngIf="errorMessage">
+    {{ errorMessage | json }}
+  </section>
 
-<p-table [value]="events" styleClass="p-datatable-gridlines" responsiveLayout="scroll" *ngIf="!errorMessage">
-  <ng-template pTemplate="header">
-    <tr>
-      <th style="text-align: center">Event Name</th>
-      <th style="text-align: center">Event Description</th>
-      <th style="text-align: center">View Groups</th>
-    </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-event>
-    <tr>
-      <td>{{event.OrganizationName}}</td>
-      <td>{{event.Description}}</td>
-      <td style="text-align: center">
-        <button pButton type="button" label="Groups" (click)="goToGroups(event.OrganizationId, event.OrganizationName)"></button>
-      </td>
-    </tr>
-  </ng-template>
-</p-table>
-
+  <p-table [value]="events" styleClass="p-datatable-gridlines" responsiveLayout="scroll" *ngIf="!errorMessage">
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="text-align: center">Event Name</th>
+        <th style="text-align: center">Event Description</th>
+        <th style="text-align: center">View Groups</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-event>
+      <tr>
+        <td>{{event.OrganizationName}}</td>
+        <td>{{event.Description}}</td>
+        <td style="text-align: center">
+          <button pButton type="button" label="Groups"
+            (click)="goToGroups(event.OrganizationId, event.OrganizationName)"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
